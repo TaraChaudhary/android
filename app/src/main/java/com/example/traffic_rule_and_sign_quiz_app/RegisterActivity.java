@@ -120,7 +120,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 break;
         }
     }
-
     @Override
     public void onCheckedChanged(RadioGroup group, int i) {
         if (i == R.id.rbMale) {
