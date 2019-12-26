@@ -44,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         btnEmail=findViewById(R.id.fourth);
         btnPassword=findViewById(R.id.fifth);
         btnBack=findViewById(R.id.back);
-        btnSigup=findViewById(R.id.btnTakeSignup);
+        btnSigup=findViewById(R.id.btnsignup);
 
 
         linearName = findViewById(R.id.linear1);
@@ -114,7 +114,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.btnTakeSignup:
+           case R.id.btnsignup:
 
 
                 break;

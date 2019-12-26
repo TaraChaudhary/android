@@ -243,7 +243,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
-                        android:drawableLeft="@drawable/user"
+                        android:drawableLeft="@drawable/mail"
                         android:drawablePadding="10dp"
                         android:hint="Email Address"
                         android:inputType="text"
@@ -263,7 +263,7 @@
                         android:layout_marginTop="10dp"
 
                         android:layout_marginEnd="20dp"
-                        android:drawableLeft="@drawable/user"
+                        android:drawableLeft="@drawable/phone"
                         android:drawablePadding="10dp"
                         android:hint="Phone Number"
                         android:inputType="text"
@@ -374,39 +374,24 @@
 
                         />
 
-
                     <Button
-                        android:layout_below="@+id/desc"
-                        android:layout_marginTop="40dp"
-                        android:id="@+id/btnTakeSignup"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Sign Up"
-                        android:textColor="#FFF"
-                        android:background="#0000FF"
-                        android:textAllCaps="false"/>
-                    <Button
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        style="@style/Widget.AppCompat.Button.Borderless"
-                        android:text="Sign  up without uploading my contacts"
-                        android:layout_below="@+id/btnTakeSignup"
-                        android:textColor="#0078FF"
-                        android:textAllCaps="false"
-                        />
-
-                    <TextView
-                        android:layout_alignParentBottom="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/btnsignup"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:padding="10dp"
-                        android:textAlignment="center"
-                        android:textSize="12dp"
-                        android:text="Info about contacts in your address book, including names, phone numbers and nicknames, will be sent to Facebook so we can suggest friends and provide and improve ads for you and others, and offer a better service. You can turn this off in Settings and mannage or delete contact info you share with Facebook. Learn More."
+                        android:layout_marginTop="50dp"
 
-                        />
+
+                        android:textColor="#fff"
+                        android:textAllCaps="true"
+
+                        android:text="Sign up"
+                        android:src="@drawable/ic_arrow_forward_black_24dp"
+                        android:background="@drawable/button_background"/>
+
+
+
+
 
 
                 </LinearLayout>
