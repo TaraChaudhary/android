@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
@@ -26,13 +28,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private TextView toolbarhead;
     private RelativeLayout Finish;
     private Button btnStart,btnDob,btnGender,btnEmail,btnPassword,btnBack,btnSigup;
-    TextInputEditText fname,lname,phone,email,password;
+   EditText fname,lname,phone,email,password,username;
     DatePicker dob;
     RadioGroup gender;
 
     Retrofit retrofit;
 
-    String udob,uname,ugender,uphone,uemail,upassword;
+    String udob,uname,ugender,uphone,uemail,upassword,uusername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         btnBack=findViewById(R.id.back);
         btnSigup=findViewById(R.id.btnsignup);
 
+        fname = findViewById(R.id.firstname);
+        lname = findViewById(R.id.lastname);
+        gender = findViewById(R.id.rgGender);
+        email=findViewById(R.id.email);
+        phone=findViewById(R.id.mobile);
+        username=findViewById(R.id.username);
+        password=findViewById(R.id.password);
 
         linearName = findViewById(R.id.linear1);
         toolbarhead = findViewById(R.id.toolbarhead);
@@ -62,63 +71,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         btnEmail.setOnClickListener(this);
         btnPassword.setOnClickListener(this);
         btnBack.setOnClickListener(this);
+        gender.setOnCheckedChangeListener(this);
         btnSigup.setOnClickListener(this);
 
         dob = findViewById(R.id.datePicker);
         Calendar c = Calendar.getInstance();
         c.set(2000, 11, 31);//Year,Mounth -1,Day
         dob.setMaxDate(c.getTimeInMillis());
-    }
-
-    @Override
-    public void onClick(View v) {
-        Intent intent;
-        switch (v.getId()) {
-            case R.id.start:
-
-                linearName.setVisibility(View.GONE);
-                linearGender.setVisibility(View.VISIBLE);
-                toolbarhead.setText("Gender");
-                break;
-
-
-            case R.id.second:
-                linearDob.setVisibility(View.VISIBLE);
-                linearGender.setVisibility(View.GONE);
-                toolbarhead.setText("Birthday");
-
-
-                break;
-
-            case R.id.third:
-                linearEmail.setVisibility(View.VISIBLE);
-                linearDob.setVisibility(View.GONE);
-                toolbarhead.setText("Email");
-
-
-                break;
-
-            case R.id.fourth:
-                linearPassword.setVisibility(View.VISIBLE);
-                linearEmail.setVisibility(View.GONE);
-                toolbarhead.setText("Login");
-
-            case R.id.fifth:
-                linearPassword.setVisibility(View.GONE);
-                linearSignup.setVisibility(View.VISIBLE);
-                toolbarhead.setText("Terms & Privacy");
-
-
-                break;
-            case R.id.back:
-                intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
-                break;
-           case R.id.btnsignup:
-
-
-                break;
-        }
     }
     @Override
     public void onCheckedChanged(RadioGroup group, int i) {
@@ -135,4 +94,89 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(this, "Others", Toast.LENGTH_SHORT).show();
         }
     }
+    @Override
+    public void onClick(View v) {
+        Intent intent;
+        switch (v.getId()) {
+            case R.id.start:
+
+                String ffname = fname.getText().toString();
+                String llname = lname.getText().toString();
+                if (TextUtils.isEmpty(ffname) || TextUtils.isEmpty(llname)) {
+
+                    fname.setError("Enter First Name");
+                    lname.setError("Enter Last Name");
+                }else
+                {
+                    linearName.setVisibility(View.GONE);
+                    linearGender.setVisibility(View.VISIBLE);
+                    toolbarhead.setText("Gender");
+                    uname = fname.getText().toString() +" "+ lname.getText().toString();
+                }
+                break;
+
+
+            case R.id.second:
+                if (TextUtils.isEmpty(ugender)) {
+                    Toast.makeText(this, "Select Your Gender", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    linearDob.setVisibility(View.VISIBLE);
+                    linearGender.setVisibility(View.GONE);
+                    toolbarhead.setText("Birthday");
+
+                }
+                break;
+
+            case R.id.third:
+                linearEmail.setVisibility(View.VISIBLE);
+                linearDob.setVisibility(View.GONE);
+                toolbarhead.setText("Email");
+                udob= dob.getDayOfMonth()+"/"+ (dob.getMonth() + 1)+"/"+dob.getYear();
+
+
+                break;
+
+
+            case R.id.fourth:
+                String eemail = email.getText().toString();
+                String mobile = phone.getText().toString();
+                if (TextUtils.isEmpty(eemail)|| TextUtils.isEmpty(mobile)) {
+                    email.setError("Enter Your Email");
+                    phone.setError("Enter Your Phone Number");
+                }else
+                {
+                    linearPassword.setVisibility(View.VISIBLE);
+                    linearEmail.setVisibility(View.GONE);
+                    toolbarhead.setText("Login");
+                    uphone = phone.getText().toString();
+                    uemail= email.getText().toString();
+                }
+
+                break;
+            case R.id.fifth:
+                String user = username.getText().toString();
+                String pass = password.getText().toString();
+                if (TextUtils.isEmpty(user)|| TextUtils.isEmpty(pass)) {
+                    username.setError("Enter Your Username");
+                    password.setError("Enter Your Phone password");
+                }else {
+                    linearPassword.setVisibility(View.GONE);
+                    linearSignup.setVisibility(View.VISIBLE);
+                    toolbarhead.setText("Terms & Privacy");
+                    uusername = username.getText().toString();
+                    upassword= password.getText().toString();
+                }
+                break;
+            case R.id.back:
+                intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnsignup:
+
+
+                break;
+        }
+    }
+
 }
