@@ -17,10 +17,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traffic_rule_and_sign_quiz_app.API.User;
+import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
+import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener,RadioGroup.OnCheckedChangeListener {
@@ -34,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     Retrofit retrofit;
 
-    String udob,uname,ugender,uphone,uemail,upassword,uusername;
+    String udob,ufname,ulname,ugender,uphone,uemail,upassword,uusername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +117,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     linearName.setVisibility(View.GONE);
                     linearGender.setVisibility(View.VISIBLE);
                     toolbarhead.setText("Gender");
-                    uname = fname.getText().toString() +" "+ lname.getText().toString();
+                    ufname = fname.getText().toString();
+                    ulname=lname.getText().toString();
                 }
                 break;
 
@@ -173,10 +180,38 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent);
                 break;
             case R.id.btnsignup:
-
+                Register();
 
                 break;
         }
+    }
+    private void Register() {
+
+
+        User_model user_model = new User_model(ufname,ulname,uphone,ugender,udob,uemail,uusername,upassword,"");
+
+        User userapi = Url.getInstance().create(User.class);
+        Call<Void> signUpCall = userapi.registerUser(user_model);
+
+        signUpCall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(RegisterActivity.this, "Code " + response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Toast.makeText(RegisterActivity.this, "Registered", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(RegisterActivity.this, "Error" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        });
+
     }
 
 }
