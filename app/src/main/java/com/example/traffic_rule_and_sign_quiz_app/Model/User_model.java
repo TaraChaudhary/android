@@ -3,26 +3,26 @@ package com.example.traffic_rule_and_sign_quiz_app.Model;
 public class User_model {
 
     String _id;
-    String firstname;
-    String lastname;
-    String phone;
-    String gender;
-    String dob;
-    String email;
-    String username;
-    String password;
-    String token;
+    String Firstname;
+    String Lastname;
+    String Phone;
+    String Gender;
+    String Dob;
+    String Email;
+    String Username;
+    String Password;
+    String Token;
 
     public User_model(String firstname, String lastname, String phone, String gender, String dob, String email, String username, String password, String token) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.phone = phone;
-        this.gender = gender;
-        this.dob = dob;
-        this.email = email;
-        this.username = username;
-        this.password = password;
-        this.token = token;
+        Firstname = firstname;
+        Lastname = lastname;
+        Phone = phone;
+        Gender = gender;
+        Dob = dob;
+        Email = email;
+        Username = username;
+        Password = password;
+        Token = token;
     }
 
     public String get_id() {
@@ -34,74 +34,74 @@ public class User_model {
     }
 
     public String getFirstname() {
-        return firstname;
+        return Firstname;
     }
 
     public void setFirstname(String firstname) {
-        this.firstname = firstname;
+        Firstname = firstname;
     }
 
     public String getLastname() {
-        return lastname;
+        return Lastname;
     }
 
     public void setLastname(String lastname) {
-        this.lastname = lastname;
+        Lastname = lastname;
     }
 
     public String getPhone() {
-        return phone;
+        return Phone;
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        Phone = phone;
     }
 
     public String getGender() {
-        return gender;
+        return Gender;
     }
 
     public void setGender(String gender) {
-        this.gender = gender;
+        Gender = gender;
     }
 
     public String getDob() {
-        return dob;
+        return Dob;
     }
 
     public void setDob(String dob) {
-        this.dob = dob;
+        Dob = dob;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        Email = email;
     }
 
     public String getUsername() {
-        return username;
+        return Username;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        Username = username;
     }
 
     public String getPassword() {
-        return password;
+        return Password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        Password = password;
     }
 
     public String getToken() {
-        return token;
+        return Token;
     }
 
     public void setToken(String token) {
-        this.token = token;
+        Token = token;
     }
 }
