@@ -200,30 +200,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         User_model user_model = new User_model(ufname,ulname,uphone,ugender,udob,uemail,uusername,upassword,"");
 
-        User userapi = Url.getInstance().create(User.class);
-        Call<Void> signUpCall = userapi.registerUser(user_model);
-
-        signUpCall.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (!response.isSuccessful()) {
-                    Toast.makeText(RegisterActivity.this, "Code " + response.code(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Toast.makeText(RegisterActivity.this, "Registered successfullly", Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(RegisterActivity.this, "Error" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-
-            }
-
-
-        });
 
     }
 
