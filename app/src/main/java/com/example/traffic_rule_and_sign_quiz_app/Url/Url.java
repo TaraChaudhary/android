@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Url{
 
-    private static final String BASE_URL="http://10.0.2.2:4000/";
+    private static final String BASE_URL="http://10.0.2.2:5000/";
     public static String token="Bearer";
     public static Retrofit getInstance() {
         Retrofit retrofit = new Retrofit.Builder()

@@ -84,6 +84,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         Calendar c = Calendar.getInstance();
         c.set(2000, 11, 31);//Year,Mounth -1,Day
         dob.setMaxDate(c.getTimeInMillis());
+
+        btnSigup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Register();
+            }
+        });
     }
     @Override
     public void onCheckedChanged(RadioGroup group, int i) {
@@ -179,10 +186,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.btnsignup:
-                Register();
-
-                break;
+//            case R.id.btnsignup:
+//                Register();
+//
+//                break;
         }
     }
     private void Register() {
