@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private LinearLayout linearName, linearGender,linearDob,linearEmail,linearPassword,linearSignup;
     private TextView toolbarhead;
     private RelativeLayout Finish;
-    private Button btnStart,btnDob,btnGender,btnEmail,btnPassword,btnBack,btnSigup;
+    private Button btnStart,btnDob,btnGender,btnEmail,btnPassword,btnBack,btnSigup,btnlogin;
    EditText fname,lname,phone,email,password,username;
     DatePicker dob;
     RadioGroup gender;
@@ -53,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         btnPassword=findViewById(R.id.fifth);
         btnBack=findViewById(R.id.back);
         btnSigup=findViewById(R.id.btnsignup);
+        btnlogin=findViewById(R.id.login);
 
         fname = findViewById(R.id.firstname);
         lname = findViewById(R.id.lastname);
@@ -85,10 +86,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         c.set(2000, 11, 31);//Year,Mounth -1,Day
         dob.setMaxDate(c.getTimeInMillis());
 
-        btnSigup.setOnClickListener(new View.OnClickListener() {
+        btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Register();
+                Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -186,10 +189,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 break;
-//            case R.id.btnsignup:
-//                Register();
-//
-//                break;
+            case R.id.btnsignup:
+                Register();
+
+                break;
         }
     }
     private void Register() {
@@ -207,7 +210,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     Toast.makeText(RegisterActivity.this, "Code " + response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Toast.makeText(RegisterActivity.this, "Registered", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Registered successfullly", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
 
             @Override
