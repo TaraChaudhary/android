@@ -1,4 +1,4 @@
-package com.example.traffic_rule_and_sign_quiz_app;
+package com.example.traffic_rule_and_sign_quiz_app.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,23 +10,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.traffic_rule_and_sign_quiz_app.API.User;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
-import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
-import com.google.android.material.textfield.TextInputEditText;
+import com.example.traffic_rule_and_sign_quiz_app.R;
 
 import java.util.Calendar;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener,RadioGroup.OnCheckedChangeListener {
@@ -89,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+                Intent intent=new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }

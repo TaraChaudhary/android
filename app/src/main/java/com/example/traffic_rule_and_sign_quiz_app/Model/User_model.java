@@ -25,6 +25,12 @@ public class User_model {
         Token = token;
     }
 
+    public User_model( String username, String password) {
+
+        Username = username;
+        Password = password;
+    }
+
     public String get_id() {
         return _id;
     }
