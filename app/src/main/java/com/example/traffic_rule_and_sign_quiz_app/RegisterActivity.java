@@ -1,4 +1,4 @@
-package com.example.traffic_rule_and_sign_quiz_app.Activities;
+package com.example.traffic_rule_and_sign_quiz_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,11 +16,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traffic_rule_and_sign_quiz_app.API.User;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
-import com.example.traffic_rule_and_sign_quiz_app.R;
+import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
 
 import java.util.Calendar;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener,RadioGroup.OnCheckedChangeListener {
@@ -188,12 +192,34 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                 break;
         }
+
     }
     private void Register() {
 
 
         User_model user_model = new User_model(ufname,ulname,uphone,ugender,udob,uemail,uusername,upassword,"");
 
+        User userapi = Url.getInstance().create(User.class);
+        Call<Void> signUpCall = userapi.registerUser(user_model);
+
+        signUpCall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(RegisterActivity.this, "Code " + response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Toast.makeText(RegisterActivity.this, "Registered", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(RegisterActivity.this, "Error" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        });
 
     }
 

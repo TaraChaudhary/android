@@ -1,4 +1,4 @@
-package com.example.traffic_rule_and_sign_quiz_app.Activities;
+package com.example.traffic_rule_and_sign_quiz_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,10 +17,9 @@ import android.widget.Toast;
 
 import com.example.traffic_rule_and_sign_quiz_app.Methods.Login;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
-import com.example.traffic_rule_and_sign_quiz_app.R;
 import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity {
     EditText editUsername, editPassword;
     ImageButton btnLogin;
     Button Signup;
@@ -40,9 +39,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editPassword = findViewById(R.id.password);
         btnLogin = findViewById(R.id.signin);
         showPassword = findViewById(R.id.eye);
-        Signup=findViewById(R.id.signup);
+        Signup = findViewById(R.id.signup);
 
-        btnLogin.setOnClickListener(this);
+        // btnLogin.setOnClickListener(this);
 
         showPassword.setOnClickListener(new View.OnClickListener() {
 
@@ -73,35 +72,35 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intent);
             }
         });
-    }
 
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-    @Override
-    public void onClick(View v) {
-        Username = editUsername.getText().toString();
-        Password = editPassword.getText().toString();
-        if (validate()) {
-            User_model user_model = new User_model(Username,Password);
-            // userLogin(user);
+                User_model user
+                        = new User_model(editUsername.getText().toString(),
+                        editPassword.getText().toString());
+                // userLogin(user);
 
-            Login login =new Login();
+                Login login = new Login();
 
-            if (login.userLogin(user_model))
-            {
-                Toast.makeText(LoginActivity.this, Url.token, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this  , DashboardActivity.class );
-                startActivity(intent);
-                finish();
-            } else {
-                Toast.makeText(LoginActivity.this, "Username or Password is incorrect", Toast.LENGTH_SHORT).show();
-                editUsername.setError("Username or password is incorrect");
-                editUsername.requestFocus();
+                if (login.userLogin(user)) {
+                    Toast.makeText(LoginActivity.this, Url.token, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(LoginActivity.this, "user id and password wrong", Toast.LENGTH_SHORT).show();
+
+                }
             }
-        }
-
-
+        });
 
     }
+
+
+
+
 //    private void login(){
 //        User_Model user_model = new User_Model(LEmail = etEm.getText().toString(),LPassword = etPass.getText().toString());
 //        Call<User_Model> loginUser = user_interface.userLogin(user_model);
