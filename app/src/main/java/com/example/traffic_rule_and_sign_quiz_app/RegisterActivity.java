@@ -196,7 +196,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
     private void Register() {
 
-
         User_model user_model = new User_model(ufname,ulname,uphone,ugender,udob,uemail,uusername,upassword,"");
 
         User userapi = Url.getInstance().create(User.class);

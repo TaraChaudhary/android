@@ -76,26 +76,26 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 User_model user
                         = new User_model(editUsername.getText().toString(),
                         editPassword.getText().toString());
                 // userLogin(user);
 
-                Login login = new Login();
+                Login login =new Login();
 
-                if (login.userLogin(user)) {
+                if (login.userLogin(user))
+                {
                     Toast.makeText(LoginActivity.this, Url.token, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                    Intent intent = new Intent(LoginActivity.this  , DashboardActivity.class );
                     startActivity(intent);
                     finish();
-                } else {
+                }
+                else {
                     Toast.makeText(LoginActivity.this, "user id and password wrong", Toast.LENGTH_SHORT).show();
 
                 }
             }
         });
-
     }
 
 

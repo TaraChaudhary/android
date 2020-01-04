@@ -15,11 +15,11 @@ public class Login {
 
     boolean isloggedIn=false;
 
-    public boolean userLogin(User_model login)
+    public boolean userLogin(User_model user_model)
     {
         User user= Url.getInstance().create(User.class);
-        Call<User_model> userCall=user.userLogin(login);
-        //Strick.StrictMode();
+        Call<User_model> userCall=user.userLogin(user_model);
+        Strick.StrictMode();
 
         try {
             Response<User_model>loginResponse=userCall.execute();

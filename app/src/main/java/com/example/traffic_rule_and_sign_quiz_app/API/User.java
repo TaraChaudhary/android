@@ -8,10 +8,10 @@ import retrofit2.http.POST;
 
 public interface User {
     @POST("signup")
-    Call<Void> registerUser(@Body User_model signup);
+    Call<Void> registerUser(@Body User_model user);
 
     @POST("login")
-    Call<User_model> userLogin(@Body User_model login);
+    Call<User_model> userLogin(@Body User_model user_model);
 
 
 }
