@@ -15,8 +15,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.traffic_rule_and_sign_quiz_app.Methods.Login;
+import com.example.traffic_rule_and_sign_quiz_app.Methods.LoginRegister;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
+import com.example.traffic_rule_and_sign_quiz_app.R;
 import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
 
 public class LoginActivity extends AppCompatActivity {
@@ -32,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
 
 
@@ -76,25 +78,27 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User_model user
-                        = new User_model(editUsername.getText().toString(),
-                        editPassword.getText().toString());
-                // userLogin(user);
+                Username = editUsername.getText().toString();
+                Password=editPassword.getText().toString();
+                if(validate()){
+                    User_model user
+                            = new User_model(Username,Password);
+                    // userLogin(user);
 
-                Login login =new Login();
+                    LoginRegister loginRegister =new LoginRegister();
 
-                if (login.userLogin(user))
-                {
-                    Toast.makeText(LoginActivity.this, Url.token, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this  , DashboardActivity.class );
-                    startActivity(intent);
-                    finish();
-                }
-                else {
-                    Toast.makeText(LoginActivity.this, "user id and password wrong", Toast.LENGTH_SHORT).show();
+                    if (loginRegister.userLogin(user))
+                    {
+                        Toast.makeText(LoginActivity.this, Url.token, Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this  , DashboardActivity.class );
+                        startActivity(intent);
+                        finish();
+                    }
+                    else {
+                        Toast.makeText(LoginActivity.this, "user id and password wrong", Toast.LENGTH_SHORT).show();
 
-                }
-            }
+                    }
+                }}
         });
     }
 

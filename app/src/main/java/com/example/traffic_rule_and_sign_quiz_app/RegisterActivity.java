@@ -16,15 +16,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.traffic_rule_and_sign_quiz_app.API.User;
+import com.example.traffic_rule_and_sign_quiz_app.Methods.LoginRegister;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
-import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
+import com.example.traffic_rule_and_sign_quiz_app.R;
 
 import java.util.Calendar;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener,RadioGroup.OnCheckedChangeListener {
@@ -32,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private TextView toolbarhead;
     private RelativeLayout Finish;
     private Button btnStart,btnDob,btnGender,btnEmail,btnPassword,btnBack,btnSigup,btnlogin;
-   EditText fname,lname,phone,email,password,username;
+    EditText fname,lname,phone,email,password,username;
     DatePicker dob;
     RadioGroup gender;
 
@@ -196,30 +193,46 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
     private void Register() {
 
-        User_model user_model = new User_model(ufname,ulname,uphone,ugender,udob,uemail,uusername,upassword,"");
+        User_model user_model = new User_model(ufname,ulname,uphone,ugender,udob,uemail,uusername,upassword);
 
-        User userapi = Url.getInstance().create(User.class);
-        Call<Void> signUpCall = userapi.registerUser(user_model);
+        LoginRegister loginRegister =new LoginRegister();
 
-        signUpCall.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (!response.isSuccessful()) {
-                    Toast.makeText(RegisterActivity.this, "Code " + response.code(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Toast.makeText(RegisterActivity.this, "Registered", Toast.LENGTH_SHORT).show();
-            }
+        if (loginRegister.registerUser(user_model))
+        {
+            //Toast.makeText(RegisterActivity.this, Url.token, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(RegisterActivity.this  , LoginActivity.class );
+            startActivity(intent);
+            finish();
+        }
+        else {
+            Toast.makeText(RegisterActivity.this, "user id and password wrong", Toast.LENGTH_SHORT).show();
 
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(RegisterActivity.this, "Error" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }}
 
-            }
+//        signUpCall.enqueue(new Callback<Void>() {
+//            @Override
+//            public void onResponse(Call<Void> call, Response<Void> response) {
+//                System.out.println(response.isSuccessful());
+//                if (response.isSuccessful()) {
+//                    Toast.makeText(RegisterActivity.this, "Registered", Toast.LENGTH_SHORT).show();
+//
+//                }
+//                else {
+//                    Toast.makeText(RegisterActivity.this, "Code " + response.code(), Toast.LENGTH_SHORT).show();
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Void> call, Throwable t) {
+//                Toast.makeText(RegisterActivity.this, "Error" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+//
+//            }
+//
+//
+//        });
 
 
-        });
 
-    }
 
-}

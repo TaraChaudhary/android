@@ -11,13 +11,14 @@ import java.io.IOException;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class Login {
+public class LoginRegister {
 
     boolean isloggedIn=false;
+    User user= Url.getInstance().create(User.class);
 
     public boolean userLogin(User_model user_model)
     {
-        User user= Url.getInstance().create(User.class);
+
         Call<User_model> userCall=user.userLogin(user_model);
         Strick.StrictMode();
 
@@ -30,6 +31,28 @@ public class Login {
 
                 Url.token +=loginResponse.body().getToken();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d("Myex:", e.getMessage());
+        }
+        return isloggedIn;
+    }
+
+    public boolean registerUser(User_model register)
+    {
+
+        Call<Void> userCall=user.registerUser(register);
+        Strick.StrictMode();
+
+        try {
+            Response<Void>loginResponse=userCall.execute();
+            if (loginResponse.isSuccessful())
+            {
+                isloggedIn=true;
+
+                // Url.token +=loginResponse.body().getToken();
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
             Log.d("Myex:", e.getMessage());
