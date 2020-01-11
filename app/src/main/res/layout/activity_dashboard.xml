@@ -1,74 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    >
+
+    <TextView
+        android:id="@+id/toolbarhead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dashboard"
+        android:textStyle="bold"
+        android:textColor="#0078FF"
+        android:textSize="30dp"
+        />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/post_profileimg"
+        android:layout_width="39dp"
+        android:layout_height="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/btn_search"
+        android:layout_toRightOf="@+id/btn_search"
+        android:foregroundGravity="right"
+        android:src="@drawable/me" />
+
+    <SearchView
+        android:id="@+id/btn_search"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="198dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="37dp"
+        android:queryHint="Search Here"
+        android:iconifiedByDefault="false"
+        android:layout_toEndOf="@+id/toolbarhead"
+        android:layout_toRightOf="@+id/toolbarhead"
+        android:backgroundTint="#333" />
+
+    <ScrollView
+        android:layout_marginTop="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbarhead"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        tools:ignore="UnknownId">
+        <FrameLayout
+            android:id="@+id/dasboard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+
+        </FrameLayout>
+    </ScrollView>
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_view"
+        android:id="@+id/homeNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/button" />
-    <LinearLayout
-        android:id="@+id/liner1"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#2888D3"
-        android:orientation="vertical"/>
-    <TextView
-        android:id="@+id/toolbarhead"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DashBoard"
-        android:textStyle="bold"
-        android:textColor="#ffff"
-        android:textSize="30dp"
-        />
-    <Button
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:id="@+id/btnmess"
-        android:layout_marginTop="10dp"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:background="@drawable/ic_menu_black_24dp"
-        android:backgroundTint="#333"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        />
-    <Button
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:id="@+id/btn_search"
-        android:layout_marginTop="10dp"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:background="@drawable/ic_search_black_24dp"
-        android:backgroundTint="#333"
-        android:layout_toLeftOf="@+id/btnmess"
-        android:layout_marginRight="30dp"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#AEE2DBDB"
-        android:layout_below="@+id/liner1"/>
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_search"
-        android:layout_marginTop="11dp">
-
-        <FrameLayout
-            android:id="@+id/dasboard"
-            android:layout_width="match_parent"
-            android:layout_height="75dp" />
-
-    </ScrollView>
-
 </RelativeLayout>
