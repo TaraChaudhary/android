@@ -30,7 +30,7 @@ public class MyAdapter  extends RecyclerView.Adapter<MyAdapter.Holder> {
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_dashboard, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_dashboard, parent, false);
         Holder postHolder = new Holder(view);
         return postHolder;
     }

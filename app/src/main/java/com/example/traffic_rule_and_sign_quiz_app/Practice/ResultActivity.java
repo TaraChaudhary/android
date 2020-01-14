@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.traffic_rule_and_sign_quiz_app.LoginActivity;
 import com.example.traffic_rule_and_sign_quiz_app.R;

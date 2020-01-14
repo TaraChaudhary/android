@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.traffic_rule_and_sign_quiz_app.Practice.ResultActivity;
 import com.example.traffic_rule_and_sign_quiz_app.R;
 
 public class QuestionActivity extends AppCompatActivity {
@@ -32,7 +33,7 @@ public class QuestionActivity extends AppCompatActivity {
             "Which is the most dangerous vehicle to drive?",
             "How many total person can be seated in Motorcycle?"
     };
-    String answers[] = {"16 years", "seen right in other's looking glass", "nightblindness", "Both 1 and 2",
+    String answers[] = {"16 years", "Seen right in other's looking glass", "Nightblindness", "Both 1 and 2",
             "40 k.m", "50 k.m", "All over Nepal", "5 years", "Motorcycle", "int"};
     String opt[] = {
             "21 years", "16 years", "12 years", "25 years",

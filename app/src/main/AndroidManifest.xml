@@ -19,18 +19,20 @@
 
         </activity>
         <activity android:name=".Practice.QuestionActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".ProgressActivity">
 
         </activity>
-        <activity android:name=".DashboardActivity" />
+        <activity android:name=".DashboardActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity" >
+        </activity>
     </application>
 
 </manifest>

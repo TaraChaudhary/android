@@ -47,24 +47,15 @@
         android:iconifiedByDefault="false"
         android:queryHint="Search Here" />
 
-    <ScrollView
-        android:layout_marginTop="20sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbarhead"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        tools:ignore="UnknownId">
+
         <FrameLayout
             android:id="@+id/dasboard"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:layout_below="@+id/btn_search"
+            android:layout_above="@+id/homeNavigation"></FrameLayout>
 
 
-        </FrameLayout>
-    </ScrollView>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/homeNavigation"
         android:layout_width="match_parent"
