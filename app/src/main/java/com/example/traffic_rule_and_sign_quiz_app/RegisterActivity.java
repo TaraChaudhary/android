@@ -1,10 +1,20 @@
 package com.example.traffic_rule_and_sign_quiz_app;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.loader.content.CursorLoader;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -16,26 +26,39 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traffic_rule_and_sign_quiz_app.API.User;
+import com.example.traffic_rule_and_sign_quiz_app.Methods.ImageResponse;
 import com.example.traffic_rule_and_sign_quiz_app.Methods.LoginRegister;
+import com.example.traffic_rule_and_sign_quiz_app.Methods.Strick;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
 import com.example.traffic_rule_and_sign_quiz_app.R;
+import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
+import com.google.android.material.circularreveal.cardview.CircularRevealCardView;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener,RadioGroup.OnCheckedChangeListener {
-    private LinearLayout linearName, linearGender,linearDob,linearEmail,linearPassword,linearSignup;
+    private LinearLayout linearName, linearGender,linearDob,linearEmail,linearPassword,linearSignup,linearimage;
     private TextView toolbarhead;
-    private RelativeLayout Finish;
-    private Button btnStart,btnDob,btnGender,btnEmail,btnPassword,btnBack,btnSigup,btnlogin;
+    private CircleImageView imgProfile;
+    private Button btnStart,btnDob,btnGender,btnEmail,btnPassword,btnBack,btnSigup,btnlogin,btnimage;
     EditText fname,lname,phone,email,password,username;
     DatePicker dob;
     RadioGroup gender;
+    String imagePath;
+    private String imageName = "";
 
-    Retrofit retrofit;
-
-    String udob,ufname,ulname,ugender,uphone,uemail,upassword,uusername;
+    String udob,ufname,ulname,ugender,uphone,uemail,upassword,uusername,image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +72,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         btnBack=findViewById(R.id.back);
         btnSigup=findViewById(R.id.btnsignup);
         btnlogin=findViewById(R.id.login);
+        btnimage=findViewById(R.id.imagebtn);
+
 
         fname = findViewById(R.id.firstname);
         lname = findViewById(R.id.lastname);
@@ -63,8 +88,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         linearGender = findViewById(R.id.linear2);
         linearDob=findViewById(R.id.linear3);
         linearEmail=findViewById(R.id.linear4);
+        linearimage=findViewById(R.id.image);
         linearPassword=findViewById(R.id.linear5);
         linearSignup=findViewById(R.id.lsignup);
+        imgProfile = findViewById(R.id.imgProfile);
 
 
         btnStart.setOnClickListener(this);
@@ -75,6 +102,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         btnBack.setOnClickListener(this);
         gender.setOnCheckedChangeListener(this);
         btnSigup.setOnClickListener(this);
+        btnimage.setOnClickListener(this);
 
         dob = findViewById(R.id.datePicker);
         Calendar c = Calendar.getInstance();
@@ -87,6 +115,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 Intent intent=new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+        imgProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BrowseImage();
             }
         });
     }
@@ -174,17 +208,26 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     password.setError("Enter Your Phone password");
                 }else {
                     linearPassword.setVisibility(View.GONE);
-                    linearSignup.setVisibility(View.VISIBLE);
-                    toolbarhead.setText("Terms & Privacy");
+                    linearimage.setVisibility(View.VISIBLE);
+                    toolbarhead.setText("Upload Profile");
                     uusername = username.getText().toString();
                     upassword= password.getText().toString();
                 }
+                break;
+            case R.id.imagebtn:
+                toolbarhead.setText("Terms & Policys");
+
+                linearimage.setVisibility(View.GONE);
+                linearSignup.setVisibility(View.VISIBLE);
+
+                saveImageOnly();
                 break;
             case R.id.back:
                 intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 break;
             case R.id.btnsignup:
+
                 Register();
 
                 break;
@@ -193,7 +236,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
     private void Register() {
 
-        User_model user_model = new User_model(ufname,ulname,uphone,ugender,udob,uemail,uusername,upassword);
+        User_model user_model = new User_model(ufname,ulname,uphone,ugender,udob,uemail,uusername,upassword,imageName);
 
         LoginRegister loginRegister =new LoginRegister();
 
@@ -208,31 +251,84 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(RegisterActivity.this, "user id and password wrong", Toast.LENGTH_SHORT).show();
 
         }
-    }}
+    }
+    private void BrowseImage() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, 0);
+    }
 
-//        signUpCall.enqueue(new Callback<Void>() {
-//            @Override
-//            public void onResponse(Call<Void> call, Response<Void> response) {
-//                System.out.println(response.isSuccessful());
-//                if (response.isSuccessful()) {
-//                    Toast.makeText(RegisterActivity.this, "Registered", Toast.LENGTH_SHORT).show();
-//
-//                }
-//                else {
-//                    Toast.makeText(RegisterActivity.this, "Code " + response.code(), Toast.LENGTH_SHORT).show();
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Void> call, Throwable t) {
-//                Toast.makeText(RegisterActivity.this, "Error" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-//
-//            }
-//
-//
-//        });
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (resultCode == RESULT_OK) {
+            if (data == null) {
+                Toast.makeText(this, "Please select an image ", Toast.LENGTH_SHORT).show();
+            }
+        }
+        Uri uri = data.getData();
+        imgProfile.setImageURI(uri);
+        imagePath = getRealPathFromUri(uri);
+        askPermission();
+    }
+
+    private String getRealPathFromUri(Uri uri) {
+        String[] projection = {MediaStore.Images.Media.DATA};
+        CursorLoader loader = new CursorLoader(getApplicationContext(),
+                uri, projection, null, null, null);
+        Cursor cursor = loader.loadInBackground();
+        int colIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String result = cursor.getString(colIndex);
+        cursor.close();
+        return result;
+    }
+
+    private void saveImageOnly() {
+        File file = new File(imagePath);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("imageFile",
+                file.getName(), requestBody);
+
+        User user = Url.getInstance().create(User.class);
+        Call<ImageResponse> responseBodyCall = user.uploadImage(body);
+        Strick.StrictMode();
+        //Synchronous methid
+        try {
+            Response<ImageResponse> imageResponseResponse = responseBodyCall.execute();
+            imageName = imageResponseResponse.body().getFilename();
+            Toast.makeText(this, "Image inserted" + imageName, Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            Toast.makeText(this, "Error" + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+
+    public void askPermission() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission
+                            .WRITE_EXTERNAL_STORAGE},
+                    1);
+        } else {
+           saveImageOnly();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == 1){
+            if(grantResults.length > 0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
+                saveImageOnly();
+            }
+            else {
+                Toast.makeText(this, "No Permission", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+}
 
 
 
