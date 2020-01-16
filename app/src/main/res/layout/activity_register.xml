@@ -32,11 +32,41 @@
             android:layout_marginLeft="15dp"
             android:textSize="20dp"
             />
-
-
     </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/login1"
+        android:background="@drawable/background"
+        android:layout_below="@+id/toolbarhead"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:gravity="center"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/background"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:textStyle="bold"
+                android:textColor="#ffff"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                />
+        </androidx.appcompat.widget.Toolbar>
+    </LinearLayout>
 
     <RelativeLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background">
@@ -49,63 +79,68 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/toolbar"
             android:orientation="vertical"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            tools:ignore="NotSibling">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+
+                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
+                android:background="@drawable/layout_background"
                 android:gravity="center"
-                android:background="@drawable/layout_background">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/linear1"
                     android:layout_width="match_parent"
-                    android:layout_height="345dp"
+                    android:layout_height="282dp"
                     android:orientation="vertical"
 
 
                     >
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                    <EditText
-                        android:layout_marginTop="25dp"
-                        android:id="@+id/firstname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:drawableLeft="@drawable/user"
-                        android:drawablePadding="10dp"
-                        android:hint="First Name"
-                        android:inputType="text"
-                        android:padding="20dp"
-                        android:textColorHint="#606060"
-                        android:textSize="14sp" />
+
+                        <EditText
+                            android:id="@+id/firstname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="25dp"
+                            android:layout_marginEnd="20dp"
+                            android:drawableLeft="@drawable/user"
+                            android:drawablePadding="10dp"
+                            android:hint="First Name"
+                            android:inputType="text"
+                            android:padding="20dp"
+                            android:textColorHint="#606060"
+                            android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                    <EditText
-                        android:id="@+id/lastname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="10dp"
 
-                        android:layout_marginEnd="20dp"
-                        android:drawableLeft="@drawable/user"
-                        android:drawablePadding="10dp"
-                        android:hint="Last Name"
-                        android:inputType="text"
-                        android:padding="20dp"
-                        android:textColorHint="#606060"
-                        android:textSize="14sp" />
+                        <EditText
+                            android:id="@+id/lastname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+
+                            android:layout_marginEnd="20dp"
+                            android:drawableLeft="@drawable/user"
+                            android:drawablePadding="10dp"
+                            android:hint="Last Name"
+                            android:inputType="text"
+                            android:padding="20dp"
+                            android:textColorHint="#606060"
+                            android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <Button
@@ -116,77 +151,80 @@
                         android:layout_marginTop="70dp"
                         android:layout_marginEnd="25dp"
                         android:layout_marginRight="25dp"
-                        android:textColor="#fff"
+                        android:background="@drawable/button_background"
 
-                        android:text="Next"
                         android:src="@drawable/ic_arrow_forward_black_24dp"
-                        android:background="@drawable/button_background"/>
+                        android:text="Next"
+                        android:textColor="#fff" />
 
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linear2"
                     android:layout_width="match_parent"
                     android:layout_height="345dp"
                     android:orientation="vertical"
-                    android:visibility="gone"
-                    >
+                    android:visibility="gone">
+
                     <TextView
                         android:id="@+id/txtWhatIsYourGender"
+                        style="@style/textStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="What's your gender?"
-                        style="@style/textStyle" />
+                        android:text="What's your gender?" />
+
                     <RadioGroup
-                        android:layout_gravity="center"
                         android:id="@+id/rgGender"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-
-                        android:padding="10dp"
+                        android:layout_gravity="center"
                         android:divider="@color/colorPrimary"
+
+                        android:orientation="vertical"
+                        android:padding="10dp"
                         android:showDividers="middle">
 
                         <RadioButton
 
                             android:id="@+id/rbFemale"
+                            style="@style/radioButtonStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Female"
-                            style="@style/radioButtonStyle"/>
+                            android:text="Female" />
 
                         <RadioButton
                             android:id="@+id/rbMale"
+                            style="@style/radioButtonStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Male"
-                            style="@style/radioButtonStyle"/>
+                            android:text="Male" />
 
                         <RadioButton
                             android:id="@+id/rbOther"
+                            style="@style/radioButtonStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Other"
-                            style="@style/radioButtonStyle"/>
+                            android:text="Other" />
                     </RadioGroup>
 
                     <Button
+                        android:id="@+id/second"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="end"
                         android:layout_marginTop="70dp"
                         android:layout_marginEnd="25dp"
                         android:layout_marginRight="25dp"
-                        android:id="@+id/second"
-                        android:textColor="#fff"
+                        android:background="@drawable/button_background"
 
                         android:text="Next"
 
-                        android:background="@drawable/button_background"/>
+                        android:textColor="#fff" />
 
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linear3"
                     android:layout_width="match_parent"
@@ -196,21 +234,23 @@
 
 
                     >
+
                     <TextView
                         android:id="@+id/txtWhatIsYourDob"
+                        style="@style/textStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="What's your birthday?"
-                        style="@style/textStyle"/>
+                        android:text="What's your birthday?" />
 
                     <DatePicker
-                        android:layout_marginTop="-10dp"
                         android:id="@+id/datePicker"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:datePickerMode="spinner"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="-10dp"
                         android:calendarViewShown="false"
-                        android:layout_gravity="center_horizontal"/>
+                        android:datePickerMode="spinner" />
+
                     <Button
                         android:id="@+id/third"
                         android:layout_width="50dp"
@@ -219,14 +259,15 @@
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="25dp"
                         android:layout_marginRight="25dp"
-                        android:textColor="#fff"
+                        android:background="@drawable/button_background"
 
-                        android:text="Next"
                         android:src="@drawable/ic_arrow_forward_black_24dp"
-                        android:background="@drawable/button_background"/>
+                        android:text="Next"
+                        android:textColor="#fff" />
 
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linear4"
                     android:layout_width="match_parent"
@@ -235,43 +276,46 @@
                     android:visibility="gone"
 
                     >
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                    <EditText
-                        android:layout_marginTop="25dp"
-                        android:id="@+id/email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:drawableLeft="@drawable/mail"
-                        android:drawablePadding="10dp"
-                        android:hint="Email Address"
-                        android:inputType="text"
-                        android:padding="20dp"
-                        android:textColorHint="#606060"
-                        android:textSize="14sp" />
+
+                        <EditText
+                            android:id="@+id/email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="25dp"
+                            android:layout_marginEnd="20dp"
+                            android:drawableLeft="@drawable/mail"
+                            android:drawablePadding="10dp"
+                            android:hint="Email Address"
+                            android:inputType="text"
+                            android:padding="20dp"
+                            android:textColorHint="#606060"
+                            android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                    <EditText
-                        android:id="@+id/mobile"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="10dp"
 
-                        android:layout_marginEnd="20dp"
-                        android:drawableLeft="@drawable/phone"
-                        android:drawablePadding="10dp"
-                        android:hint="Phone Number"
-                        android:inputType="text"
-                        android:padding="20dp"
-                        android:textColorHint="#606060"
-                        android:textSize="14sp" />
+                        <EditText
+                            android:id="@+id/mobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+
+                            android:layout_marginEnd="20dp"
+                            android:drawableLeft="@drawable/phone"
+                            android:drawablePadding="10dp"
+                            android:hint="Phone Number"
+                            android:inputType="text"
+                            android:padding="20dp"
+                            android:textColorHint="#606060"
+                            android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -283,57 +327,61 @@
                         android:layout_marginTop="70dp"
                         android:layout_marginEnd="25dp"
                         android:layout_marginRight="25dp"
-                        android:textColor="#fff"
+                        android:background="@drawable/button_background"
 
-                        android:text="Next"
                         android:src="@drawable/ic_arrow_forward_black_24dp"
-                        android:background="@drawable/button_background"/>
+                        android:text="Next"
+                        android:textColor="#fff" />
 
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linear5"
                     android:layout_width="match_parent"
                     android:layout_height="345dp"
                     android:orientation="vertical"
-                    android:visibility="gone"
-                    >
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:layout_marginTop="25dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawablePadding="10dp"
-                            android:id="@+id/username"
-                            android:drawableLeft="@drawable/user"
-                            android:layout_marginEnd="20dp"
-                            android:layout_marginStart="20dp"
-                            android:hint="Username"
-                            android:padding="20dp"
-                            android:textSize="14sp"
-                            android:textColorHint="#606060"
-                            android:inputType="text"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
-                            android:layout_marginEnd="20dp"
+                    android:visibility="gone">
 
-                            android:id="@+id/password"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/username"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
-                            android:textSize="14sp"
+                            android:layout_marginTop="25dp"
+                            android:layout_marginEnd="20dp"
+                            android:drawableLeft="@drawable/user"
+                            android:drawablePadding="10dp"
+                            android:hint="Username"
+                            android:inputType="text"
+                            android:padding="20dp"
+                            android:textColorHint="#606060"
+                            android:textSize="14sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+
+                            android:layout_marginEnd="20dp"
+                            android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
                             android:drawablePadding="10dp"
                             android:hint="Password"
+                            android:inputType="textPassword"
                             android:padding="20dp"
                             android:textColorHint="#606060"
-                            android:inputType="textPassword"/>
+                            android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <Button
@@ -344,35 +392,37 @@
                         android:layout_marginTop="70dp"
                         android:layout_marginEnd="25dp"
                         android:layout_marginRight="25dp"
-                        android:textColor="#fff"
+                        android:background="@drawable/button_background"
 
-                        android:text="Next"
                         android:src="@drawable/ic_arrow_forward_black_24dp"
-                        android:background="@drawable/button_background"/>
+                        android:text="Next"
+                        android:textColor="#fff" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/lsignup"
                     android:layout_width="match_parent"
                     android:layout_height="345dp"
                     android:orientation="vertical"
-                    android:visibility="gone"
-                    >
+                    android:visibility="gone">
+
                     <TextView
                         android:id="@+id/title"
+                        style="@style/textStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Finish Signing Up"
-                        style="@style/textStyle"/>
+                        android:text="Finish Signing Up" />
+
                     <TextView
-                        android:layout_below="@+id/title"
                         android:id="@+id/desc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/title"
                         android:layout_gravity="center"
                         android:padding="10dp"
-                        android:textAlignment="center"
                         android:text="By Tapping Sign Up, you agree to Terms, Data Policy and Cookies Policy. You may recive SMS notifications from us and can opt out any time. Information from your address book will be continuously uploaded to Facebook so we can suggest friends and provide and improve ads for you and others, and offer a better service."
+                        android:textAlignment="center"
 
                         />
 
@@ -384,25 +434,54 @@
                         android:layout_marginTop="50dp"
 
 
-                        android:textColor="#fff"
-                        android:textAllCaps="true"
+                        android:background="@drawable/button_background"
+                        android:src="@drawable/ic_arrow_forward_black_24dp"
 
                         android:text="Sign up"
+                        android:textAllCaps="true"
+                        android:textColor="#fff" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="345dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgProfile"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/noimage" />
+
+
+                    <Button
+                        android:id="@+id/imagebtn"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="50dp"
+
+
+                        android:background="@drawable/button_background"
                         android:src="@drawable/ic_arrow_forward_black_24dp"
-                        android:background="@drawable/button_background"/>
 
-
-
-
-
+                        android:text="Upload"
+                        android:textAllCaps="true"
+                        android:textColor="#fff" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
