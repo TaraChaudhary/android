@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.traffic_rule_and_sign_quiz_app.DashboardActivity;
 import com.example.traffic_rule_and_sign_quiz_app.LoginActivity;
 import com.example.traffic_rule_and_sign_quiz_app.R;
 
@@ -41,7 +42,7 @@ public class ResultActivity extends AppCompatActivity {
         btnRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent in = new Intent(getApplicationContext(), DashboardActivity.class);
                 startActivity(in);
             }
         });

@@ -3,6 +3,7 @@ package com.example.traffic_rule_and_sign_quiz_app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
@@ -28,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
     String Username, Password;
     CheckBox remember;
 
+    SharedPreferences sp;
+    SharedPreferences.Editor editor;
 
 
     @Override
@@ -42,8 +45,13 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.signin);
         showPassword = findViewById(R.id.eye);
         Signup = findViewById(R.id.signup);
+        remember=findViewById(R.id.checkbox);
 
-        // btnLogin.setOnClickListener(this);
+        sp = getApplicationContext().getSharedPreferences("mysp",MODE_PRIVATE);
+        editor = sp.edit();
+
+        Username = sp.getString("un","");
+        Password = sp.getString("pw","");
 
         showPassword.setOnClickListener(new View.OnClickListener() {
 

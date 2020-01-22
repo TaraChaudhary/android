@@ -313,7 +313,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             .WRITE_EXTERNAL_STORAGE},
                     1);
         } else {
-           saveImageOnly();
+          // saveImageOnly();
         }
     }
 
@@ -321,7 +321,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(requestCode == 1){
             if(grantResults.length > 0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
-                saveImageOnly();
+             //   saveImageOnly();
             }
             else {
                 Toast.makeText(this, "No Permission", Toast.LENGTH_SHORT).show();

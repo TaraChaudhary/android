@@ -16,7 +16,7 @@ import com.example.traffic_rule_and_sign_quiz_app.Practice.ResultActivity;
 import com.example.traffic_rule_and_sign_quiz_app.R;
 
 public class QuestionActivity extends AppCompatActivity {
-    TextView tv;
+    TextView tv,textView;
     Button submitbutton, quitbutton;
     RadioGroup radio_g;
     RadioButton rb1, rb2, rb3, rb4;
@@ -57,8 +57,11 @@ public class QuestionActivity extends AppCompatActivity {
 
         final TextView score = (TextView) findViewById(R.id.textView4);
         TextView textView = (TextView) findViewById(R.id.DispName);
+        textView=findViewById(R.id.toolbarhead);
         Intent intent = getIntent();
         String name = intent.getStringExtra("myname");
+
+
 
 
 
@@ -71,6 +74,8 @@ public class QuestionActivity extends AppCompatActivity {
         rb2 = (RadioButton) findViewById(R.id.radioButton2);
         rb3 = (RadioButton) findViewById(R.id.radioButton3);
         rb4 = (RadioButton) findViewById(R.id.radioButton4);
+
+        loadfirst();
         tv.setText(questions[flag]);
         rb1.setText(opt[0]);
         rb2.setText(opt[1]);
@@ -124,6 +129,11 @@ public class QuestionActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void loadfirst()
+    {
+        textView.setText("Practice");
     }
 
 }

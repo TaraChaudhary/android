@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/linearlayout"
+
+
     >
+    <include
+        android:id="@+id/visible"
+        android:visibility="gone"
+        layout="@layout/layout_toolbar"></include>
     <LinearLayout
+        android:id="@+id/lineara"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20sp"
+
         android:layout_marginEnd="20sp"
         android:orientation="vertical"
         android:foreground="?android:attr/selectableItemBackground"
@@ -174,6 +183,7 @@
                 android:layout_height="150dp"
                 android:layout_margin="10dp">
                 <LinearLayout
+                    android:id="@id/score"
 
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -235,4 +245,4 @@
 
 
 
-</LinearLayout>
+</FrameLayout>

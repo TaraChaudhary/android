@@ -5,57 +5,29 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/toolbarhead"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dashboard"
-        android:textStyle="bold"
-        android:textColor="#0078FF"
-        android:textSize="25dp"
-        android:layout_marginLeft="10dp"
-        />
+<RelativeLayout
+    android:id="@+id/tool"
+    android:layout_width="match_parent"
+    android:layout_height="45dp">
+ <include layout="@layout/layout_toolbar"/>
+</RelativeLayout>
+    <ScrollView
+        android:id="@+id/scroll"
+    android:layout_below="@id/tool"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:layout_above="@id/homeNavigation"
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/post_profileimg"
-        android:layout_width="43dp"
-        android:layout_height="35dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="27dp"
-        android:layout_marginLeft="27dp"
-        android:layout_marginTop="8dp"
-        android:layout_toEndOf="@+id/btn_search"
-        android:layout_toRightOf="@+id/btn_search"
-        android:foregroundGravity="right"
-        android:src="@drawable/me" />
+>
+    <FrameLayout
+        android:id="@+id/dasboard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btn_search"
+        android:layout_above="@+id/homeNavigation"></FrameLayout>
 
-    <SearchView
-        android:id="@+id/btn_search"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="226dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-
-        android:layout_marginStart="-27dp"
-        android:layout_marginLeft="-27dp"
-        android:layout_marginTop="-2dp"
-        android:layout_marginRight="37dp"
-        android:layout_toEndOf="@+id/toolbarhead"
-        android:layout_toRightOf="@+id/toolbarhead"
-        android:backgroundTint="#333"
-        android:iconifiedByDefault="false"
-        android:queryHint="Search Here" />
-
-
-        <FrameLayout
-            android:id="@+id/dasboard"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/btn_search"
-            android:layout_above="@+id/homeNavigation"></FrameLayout>
-
-
+</ScrollView>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/homeNavigation"
         android:layout_width="match_parent"

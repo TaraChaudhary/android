@@ -11,9 +11,10 @@ public class User_model {
     String email;
     String username;
     String password;
+    String image;
     String token;
 
-    public User_model(String firstname, String lastname, String phone, String gender, String dob, String email, String username, String password) {
+    public User_model(String firstname, String lastname, String phone, String gender, String dob, String email, String username, String password,String image) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.phone = phone;
@@ -22,6 +23,7 @@ public class User_model {
         this.email = email;
         this.username = username;
         this.password = password;
+        this.image = image;
         // this.token = token;
     }
 
@@ -108,5 +110,13 @@ public class User_model {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

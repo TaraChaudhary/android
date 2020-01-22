@@ -10,14 +10,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.traffic_rule_and_sign_quiz_app.Fragment.ExampleFragment;
 import com.example.traffic_rule_and_sign_quiz_app.Myadapter.MyAdapter;
 import com.example.traffic_rule_and_sign_quiz_app.Practice.QuestionActivity;
+import com.example.traffic_rule_and_sign_quiz_app.Practice.ResultActivity;
 
 public class ViewDashboardActivity extends Fragment {
     private RecyclerView view;
-    LinearLayout practice1,example1;
+    LinearLayout practice1,example1,score1, linearLayout;
+
+    TextView textView;
+
 
 
 
@@ -25,30 +30,55 @@ public class ViewDashboardActivity extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root =inflater.inflate(R.layout.activity_view_dashboard, container, false);
+        final View root =inflater.inflate(R.layout.activity_view_dashboard, container, false);
 
-
+    linearLayout=root.findViewById(R.id.lineara);
+    textView=root.findViewById(R.id.toolbarhead);
         practice1=root.findViewById(R.id.practice);
         example1=root.findViewById(R.id.example);
+        score1=root.findViewById(R.id.score);
 
         practice1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent=new Intent(getActivity(),QuestionActivity.class);
                 startActivity(intent);
+
+
             }
         });
 
         example1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment select=new ExampleFragment();
+
+                   linearLayout.setVisibility(View.GONE);
+
+                setFragment(new ExampleFragment());
+
+            }
+        });
+
+        score1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1=new Intent(getActivity(), ResultActivity.class);
+                startActivity(intent1);
             }
         });
 
         return root;
 
 
+    }
+    public boolean setFragment(Fragment fragment){
+        if(fragment != null)
+        {
+            getChildFragmentManager().beginTransaction().replace(R.id.linearlayout,fragment).commit();
+            return true;
+        }
+        return false;
     }
 
 

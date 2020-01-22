@@ -6,10 +6,12 @@
         android:title="Home"
         android:checkable="true"
         />
+
+
     <item
-        android:id="@+id/nav_catagory"
-        android:icon="@drawable/student"
-        android:title="Add Category"
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/user"
+        android:title="Profile"
         android:checkable="true"
         />
     <item
@@ -18,7 +20,5 @@
         android:title="About us"
         android:checkable="true"
         />
-
-
 
 </menu>
