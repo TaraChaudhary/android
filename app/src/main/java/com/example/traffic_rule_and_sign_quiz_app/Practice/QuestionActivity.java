@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,8 +17,9 @@ import com.example.traffic_rule_and_sign_quiz_app.Practice.ResultActivity;
 import com.example.traffic_rule_and_sign_quiz_app.R;
 
 public class QuestionActivity extends AppCompatActivity {
-    TextView tv,textView;
+    TextView tv,text1;
     Button submitbutton, quitbutton;
+    SearchView searchView;
     RadioGroup radio_g;
     RadioButton rb1, rb2, rb3, rb4;
 
@@ -57,7 +59,8 @@ public class QuestionActivity extends AppCompatActivity {
 
         final TextView score = (TextView) findViewById(R.id.textView4);
         TextView textView = (TextView) findViewById(R.id.DispName);
-        textView=findViewById(R.id.toolbarhead);
+        text1=findViewById(R.id.toolbarhead);
+        searchView=findViewById(R.id.btn_search);
         Intent intent = getIntent();
         String name = intent.getStringExtra("myname");
 
@@ -133,7 +136,9 @@ public class QuestionActivity extends AppCompatActivity {
 
     public void loadfirst()
     {
-        textView.setText("Practice");
+        text1.setText("Practice");
+        searchView.setVisibility(View.GONE);
+
     }
 
 }

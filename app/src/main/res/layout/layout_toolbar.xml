@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/toolbarhead"
+        android:layout_width="130sp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Dashboard"
+        android:textColor="#0078FF"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/post_profileimg"
+        android:layout_width="43dp"
+        android:layout_height="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="211dp"
+        android:layout_marginLeft="211dp"
+        android:layout_marginTop="7dp"
+        android:layout_toEndOf="@+id/toolbarhead"
+        android:layout_toRightOf="@+id/toolbarhead"
+        android:foregroundGravity="right"
+        android:src="@drawable/me" />
+
+    <SearchView
+        android:id="@+id/btn_search"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="196dp"
+        android:layout_height="34dp"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginStart="-23dp"
+        android:layout_marginLeft="-23dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="37dp"
+        android:layout_toEndOf="@+id/toolbarhead"
+        android:layout_toRightOf="@+id/toolbarhead"
+        android:backgroundTint="#333"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search Here" />
+
+</RelativeLayout>

@@ -74,12 +74,11 @@ protected void onCreate(Bundle savedInstanceState) {
                         case R.id.nav_home:
 
                                 selectedFragment=new ViewDashboardActivity();
-                                searchView.setVisibility(View.VISIBLE);
-                                toolbarhead.setText("Dashboard");
+
 
                                 break;
                         case R.id.nav_notification:
-                                toolbarhead.setText("About us");
+
                                 selectedFragment=new AboutUsFragment();
 
                                 break;
@@ -88,8 +87,7 @@ protected void onCreate(Bundle savedInstanceState) {
                         case R.id.nav_profile:
 
                                 selectedFragment=new ProfileFragment();
-                                toolbarhead.setText("Profile");
-                                searchView.setVisibility(View.GONE);
+
 
 
                                 break;

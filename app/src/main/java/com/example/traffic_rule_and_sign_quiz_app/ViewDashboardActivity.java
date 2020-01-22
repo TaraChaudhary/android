@@ -54,6 +54,7 @@ public class ViewDashboardActivity extends Fragment {
             public void onClick(View v) {
 
                    linearLayout.setVisibility(View.GONE);
+                   textView.setText("Example");
 
                 setFragment(new ExampleFragment());
 

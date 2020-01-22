@@ -5,21 +5,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<RelativeLayout
-    android:id="@+id/tool"
-    android:layout_width="match_parent"
-    android:layout_height="45dp">
- <include layout="@layout/layout_toolbar"/>
-</RelativeLayout>
-    <ScrollView
-        android:id="@+id/scroll"
-    android:layout_below="@id/tool"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-        android:layout_above="@id/homeNavigation"
 
 
->
     <FrameLayout
         android:id="@+id/dasboard"
         android:layout_width="match_parent"
@@ -27,7 +14,7 @@
         android:layout_below="@+id/btn_search"
         android:layout_above="@+id/homeNavigation"></FrameLayout>
 
-</ScrollView>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/homeNavigation"
         android:layout_width="match_parent"
