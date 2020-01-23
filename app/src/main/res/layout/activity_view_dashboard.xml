@@ -11,7 +11,10 @@
         android:id="@+id/tool"
         android:layout_width="match_parent"
         android:layout_height="45dp">
-        <include layout="@layout/layout_toolbar"/>
+
+        <include
+
+            layout="@layout/layout_toolbar"/>
     </RelativeLayout>
 
     <ScrollView

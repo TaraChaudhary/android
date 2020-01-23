@@ -22,15 +22,7 @@ public class AboutUsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_profile, container, false);
-        firstname = root.findViewById(R.id.fname);
-        lastname = root.findViewById(R.id.lname);
-        dobtext = root.findViewById(R.id.dob);
-        gendertext = root.findViewById(R.id.gender);
-        username = root.findViewById(R.id.username);
-        emailtext = root.findViewById(R.id.email);
-        phonetext = root.findViewById(R.id.phone);
-        imageView = root.findViewById(R.id.recievedimage);
+        View root = inflater.inflate(R.layout.fragment_aboutus, container, false);
 
 
         return root;

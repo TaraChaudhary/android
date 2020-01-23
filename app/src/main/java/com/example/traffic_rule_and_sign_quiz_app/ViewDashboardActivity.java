@@ -4,25 +4,44 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.traffic_rule_and_sign_quiz_app.Fragment.ExampleFragment;
+import com.example.traffic_rule_and_sign_quiz_app.Fragment.RoadFragment;
+import com.example.traffic_rule_and_sign_quiz_app.Methods.LoginRegister;
+import com.example.traffic_rule_and_sign_quiz_app.Methods.Strick;
+import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
 import com.example.traffic_rule_and_sign_quiz_app.Myadapter.MyAdapter;
 import com.example.traffic_rule_and_sign_quiz_app.Practice.QuestionActivity;
 import com.example.traffic_rule_and_sign_quiz_app.Practice.ResultActivity;
+import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
+
+import java.io.InputStream;
+import java.net.URL;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ViewDashboardActivity extends Fragment {
     private RecyclerView view;
     LinearLayout practice1,example1,score1, linearLayout,map1,road,signal1,help1;
+    String id, token;
+    SharedPreferences prfs;
+    CircleImageView imageView;
+    User_model model;
+    LoginRegister loginRegister = new LoginRegister();
 
     TextView textView;
-
+Button button;
 
 
 
@@ -41,6 +60,24 @@ public class ViewDashboardActivity extends Fragment {
         road=root.findViewById(R.id.roadrule);
         signal1=root.findViewById(R.id.signal);
         help1=root.findViewById(R.id.help);
+        button=root.findViewById(R.id.back);
+        imageView=root.findViewById(R.id.post_profileimg);
+
+        prfs = getContext().getSharedPreferences("session", Context.MODE_PRIVATE);
+        id = prfs.getString("id", "");
+        token = prfs.getString("token", "");
+        model= loginRegister.userDetail(id, token);
+
+        loadfirst();
+
+        Strick.StrictMode();
+
+        try {
+            URL url = new URL(Url.imagePath + model.getImage());
+            imageView.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
 
@@ -61,6 +98,7 @@ public class ViewDashboardActivity extends Fragment {
 
                    linearLayout.setVisibility(View.GONE);
                    textView.setText("Example");
+                   button.setVisibility(View.VISIBLE);
 
                 setFragment(new ExampleFragment());
 
@@ -70,19 +108,35 @@ public class ViewDashboardActivity extends Fragment {
         score1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1=new Intent(getActivity(), ResultActivity.class);
-                startActivity(intent1);
+                Intent score=new Intent(getActivity(), ResultActivity.class);
+                startActivity(score);
             }
         });
 
         map1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1=new Intent(getActivity(), MapActivity.class);
-                startActivity(intent1);
+                Intent m=new Intent(getActivity(), MapActivity.class);
+                startActivity(m);
             }
         });
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent back =new Intent(getActivity(),DashboardActivity.class);
+                startActivity(back);
+            }
+        });
+        road.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linearLayout.setVisibility(View.GONE);
+                textView.setText("Road rule");
+                button.setVisibility(View.VISIBLE);
 
+                setFragment(new RoadFragment());
+            }
+        });
         return root;
 
 
@@ -94,6 +148,10 @@ public class ViewDashboardActivity extends Fragment {
             return true;
         }
         return false;
+    }
+    public void loadfirst()
+    {
+        button.setVisibility(View.GONE);
     }
 
 

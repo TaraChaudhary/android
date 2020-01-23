@@ -13,12 +13,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.traffic_rule_and_sign_quiz_app.DashboardActivity;
 import com.example.traffic_rule_and_sign_quiz_app.Practice.ResultActivity;
 import com.example.traffic_rule_and_sign_quiz_app.R;
 
 public class QuestionActivity extends AppCompatActivity {
     TextView tv,text1;
-    Button submitbutton, quitbutton;
+    Button submitbutton, quitbutton,button;
     SearchView searchView;
     RadioGroup radio_g;
     RadioButton rb1, rb2, rb3, rb4;
@@ -61,8 +62,8 @@ public class QuestionActivity extends AppCompatActivity {
         TextView textView = (TextView) findViewById(R.id.DispName);
         text1=findViewById(R.id.toolbarhead);
         searchView=findViewById(R.id.btn_search);
-        Intent intent = getIntent();
-        String name = intent.getStringExtra("myname");
+        button=findViewById(R.id.back);
+
 
 
 
@@ -84,6 +85,14 @@ public class QuestionActivity extends AppCompatActivity {
         rb2.setText(opt[1]);
         rb3.setText(opt[2]);
         rb4.setText(opt[3]);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent back =new Intent(QuestionActivity.this, DashboardActivity.class);
+                startActivity(back);
+            }
+        });
         submitbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

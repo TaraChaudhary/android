@@ -29,13 +29,36 @@ public class LoginRegister {
             {
                 isloggedIn=true;
                 Url.id = loginResponse.body().get_id();
-                Url.token +=loginResponse.body().getToken();
+
+                Url.token += loginResponse.body().getToken();
             }
         } catch (IOException e) {
             e.printStackTrace();
             Log.d("Myex:", e.getMessage());
         }
         return isloggedIn;
+    }
+
+    public User_model userDetail(String id,String Token)
+    {
+        User_model user_model = null;
+        System.out.println(id);
+        System.out.println(Token);
+        Call<User_model> userCall=user.getUserDetails(Token,id);
+        Strick.StrictMode();
+
+        try {
+            Response<User_model>loginResponse=userCall.execute();
+
+            if (loginResponse.isSuccessful())
+            {
+               user_model=loginResponse.body();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d("Myex:", e.getMessage());
+        }
+        return user_model;
     }
 
     public boolean registerUser(User_model register)

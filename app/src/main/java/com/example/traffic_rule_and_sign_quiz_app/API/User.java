@@ -20,6 +20,7 @@ public interface User {
     @POST("login")
     Call<User_model> userLogin(@Body User_model user_model);
 
+
     @Multipart
     @POST("upload/image")
     Call<ImageResponse> uploadImage(@Part MultipartBody.Part img);

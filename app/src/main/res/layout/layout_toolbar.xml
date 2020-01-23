@@ -3,8 +3,15 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+    <Button
+        android:id="@+id/back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
 
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:background="@drawable/ic_arrow_back_black_24dp"/>
     <TextView
+        android:layout_toRightOf="@+id/back"
         android:id="@+id/toolbarhead"
         android:layout_width="130sp"
         android:layout_height="wrap_content"

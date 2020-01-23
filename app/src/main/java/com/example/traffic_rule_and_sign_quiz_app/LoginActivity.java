@@ -47,11 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         Signup = findViewById(R.id.signup);
         remember=findViewById(R.id.checkbox);
 
-        sp = getApplicationContext().getSharedPreferences("mysp",MODE_PRIVATE);
-        editor = sp.edit();
 
-        Username = sp.getString("un","");
-        Password = sp.getString("pw","");
 
         showPassword.setOnClickListener(new View.OnClickListener() {
 
@@ -89,8 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                 Username = editUsername.getText().toString();
                 Password=editPassword.getText().toString();
                 if(validate()){
-                    User_model user
-                            = new User_model(Username,Password);
+                    User_model user = new User_model(Username,Password);
                     // userLogin(user);
 
                     LoginRegister loginRegister =new LoginRegister();
@@ -102,8 +97,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         editor.putString("id", Url.id);
                         editor.putString("token", Url.token);
-
-                        editor.apply();
+                        editor.commit();
 
                         Toast.makeText(LoginActivity.this, Url.token, Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this  , DashboardActivity.class );
@@ -111,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                         finish();
                     }
                     else {
-                        Toast.makeText(LoginActivity.this, "user id and password wrong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Username and password wrong", Toast.LENGTH_SHORT).show();
 
                     }
                 }}
