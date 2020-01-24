@@ -30,6 +30,7 @@ public class LoginRegister {
                 isloggedIn=true;
                 Url.id = loginResponse.body().get_id();
 
+
                 Url.token += loginResponse.body().getToken();
             }
         } catch (IOException e) {
@@ -42,8 +43,8 @@ public class LoginRegister {
     public User_model userDetail(String id,String Token)
     {
         User_model user_model = null;
-        System.out.println(id);
-        System.out.println(Token);
+    //    System.out.println(id);
+    //    System.out.println(Token);
         Call<User_model> userCall=user.getUserDetails(Token,id);
         Strick.StrictMode();
 

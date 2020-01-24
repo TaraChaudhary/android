@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ import com.example.traffic_rule_and_sign_quiz_app.Methods.Strick;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
 import com.example.traffic_rule_and_sign_quiz_app.R;
 import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
+import com.example.traffic_rule_and_sign_quiz_app.ViewDashboardActivity;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -37,6 +39,7 @@ public class ProfileFragment extends Fragment {
     TextView firstname, lastname, dobtext, gendertext, emailtext, phonetext, username,fname;
    CircleImageView imageView;
    RelativeLayout relativeLayout;
+   Button back;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -51,6 +54,7 @@ public class ProfileFragment extends Fragment {
         phonetext = root.findViewById(R.id.phone1);
         fname=root.findViewById(R.id.fname);
         edit=root.findViewById(R.id.edit);
+        back=root.findViewById(R.id.back);
         imageView = root.findViewById(R.id.post_profileimg);
         relativeLayout=root.findViewById(R.id.layout1);
 
@@ -60,6 +64,14 @@ public class ProfileFragment extends Fragment {
 
                 relativeLayout.setVisibility(View.GONE);
                 setFragment(new UpdateFragment());
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relativeLayout.setVisibility(View.GONE);
+                setFragment(new ViewDashboardActivity());
             }
         });
 

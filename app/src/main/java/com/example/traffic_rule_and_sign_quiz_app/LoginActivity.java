@@ -97,6 +97,8 @@ public class LoginActivity extends AppCompatActivity {
 
                         editor.putString("id", Url.id);
                         editor.putString("token", Url.token);
+                        editor.putString("username", Username);
+                        editor.putString("password", Password);
                         editor.commit();
 
                         Toast.makeText(LoginActivity.this, Url.token, Toast.LENGTH_SHORT).show();
@@ -111,39 +113,6 @@ public class LoginActivity extends AppCompatActivity {
                 }}
         });
     }
-
-
-
-
-//    private void login(){
-//        User_Model user_model = new User_Model(LEmail = etEm.getText().toString(),LPassword = etPass.getText().toString());
-//        Call<User_Model> loginUser = user_interface.userLogin(user_model);
-//        loginUser.enqueue(new Callback<User_Model>() {
-//            @Override
-//            public void onResponse(Call<User_Model> call, Response<User_Model> response) {
-//                if (response.isSuccessful()) {
-//                    sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.putString("Token",response.body().getToken());
-//                    editor.putString("Name",response.body().getName());
-//
-//                    editor.commit();
-//                    Intent intentDashboard = new Intent(LoginActivity.this, MainActivity.class);
-//                    startActivity(intentDashboard);
-//                }
-//                else{
-//                    Toast.makeText(LoginActivity.this, "Invalid Email or Password!", Toast.LENGTH_SHORT).show();
-//                    etEm.setError("incorrect email ");
-//                    etPass.setError("incorrect password");
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<User_Model> call, Throwable t) {
-//
-//            }
-//        });
-//    }
 
     private boolean validate() {
         if (TextUtils.isEmpty(Username)) {

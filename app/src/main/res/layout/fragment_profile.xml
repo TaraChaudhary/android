@@ -27,6 +27,13 @@
 
             android:src="@drawable/background"
             app:srcCompat="@drawable/background" />
+        <Button
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:background="@drawable/ic_arrow_back_black_24dp"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/post_profileimg"

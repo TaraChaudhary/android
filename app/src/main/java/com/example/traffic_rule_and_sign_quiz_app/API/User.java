@@ -10,6 +10,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
@@ -27,6 +28,10 @@ public interface User {
 
     @GET("single/{id}")
     Call<User_model> getUserDetails(@Header("Authorization")String token, @Path("id") String id );
+
+    @PUT("update/{id}")
+    Call<Void> Updateuser(@Path("id") String id,
+                              @Body User_model user);
 
 
 }
