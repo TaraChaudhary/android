@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.traffic_rule_and_sign_quiz_app.Fragment.ExampleFragment;
 import com.example.traffic_rule_and_sign_quiz_app.Fragment.RoadFragment;
+import com.example.traffic_rule_and_sign_quiz_app.Fragment.SignalFragment;
 import com.example.traffic_rule_and_sign_quiz_app.Methods.LoginRegister;
 import com.example.traffic_rule_and_sign_quiz_app.Methods.Strick;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
@@ -135,6 +136,17 @@ Button button;
                 button.setVisibility(View.VISIBLE);
 
                 setFragment(new RoadFragment());
+            }
+        });
+
+        signal1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linearLayout.setVisibility(View.GONE);
+                textView.setText("Signal");
+                button.setVisibility(View.VISIBLE);
+
+                setFragment(new SignalFragment());
             }
         });
         return root;

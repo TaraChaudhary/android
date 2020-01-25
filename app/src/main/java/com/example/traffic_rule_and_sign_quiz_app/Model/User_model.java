@@ -30,6 +30,14 @@ public class User_model {
         this.token = token;
     }
 
+    public User_model( String firstname, String lastname, String phone, String email, String username) {
+
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.phone = phone;
+        this.email = email;
+        this.username = username;
+    }
 
     public User_model(String username, String password) {
         this.username = username;

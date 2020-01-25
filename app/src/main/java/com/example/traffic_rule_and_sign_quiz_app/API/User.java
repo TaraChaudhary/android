@@ -30,8 +30,7 @@ public interface User {
     Call<User_model> getUserDetails(@Header("Authorization")String token, @Path("id") String id );
 
     @PUT("update/{id}")
-    Call<Void> Updateuser(@Path("id") String id,
-                              @Body User_model user);
+    Call<Void> Updateuser(@Path("id") String id,@Body User_model userModel);
 
 
 }

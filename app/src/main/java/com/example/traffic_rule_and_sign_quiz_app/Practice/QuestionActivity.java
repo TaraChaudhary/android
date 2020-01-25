@@ -146,7 +146,7 @@ public class QuestionActivity extends AppCompatActivity {
     public void loadfirst()
     {
         text1.setText("Practice");
-        searchView.setVisibility(View.GONE);
+
 
     }
 

@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,10 +29,9 @@ public class LoginActivity extends AppCompatActivity {
     TextView showPassword;
     String Username, Password;
     CheckBox remember;
-
-    SharedPreferences sp;
-    SharedPreferences.Editor editor;
-
+    private SharedPreferences loginPreferences;
+    private SharedPreferences.Editor loginPrefsEditor;
+    private Boolean saveLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,33 +43,28 @@ public class LoginActivity extends AppCompatActivity {
         editUsername = findViewById(R.id.username);
         editPassword = findViewById(R.id.password);
         btnLogin = findViewById(R.id.signin);
-        showPassword = findViewById(R.id.eye);
+     //   showPassword = findViewById(R.id.eye);
         Signup = findViewById(R.id.signup);
-        remember=findViewById(R.id.checkbox);
+        remember = findViewById(R.id.checkbox);
+        loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        loginPrefsEditor = loginPreferences.edit();
 
-
-
-        showPassword.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                if (v.getId() == R.id.eye) {
-
-                    if (editPassword.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
-
-                        //Show Password
-                        editPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    } else {
-
-
-                        //Hide Password
-                        editPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-
-                    }
-                }
-            }
-        });
+        saveLogin = loginPreferences.getBoolean("saveLogin", false);
+        if (saveLogin == true) {
+            editUsername.setText(loginPreferences.getString("username", ""));
+            editPassword.setText(loginPreferences.getString("password", ""));
+            remember.setChecked(true);
+        }
+//
+//        showPassword.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//
+//
+//            }
+//
+//        });
         Signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,11 +92,19 @@ public class LoginActivity extends AppCompatActivity {
 
                         editor.putString("id", Url.id);
                         editor.putString("token", Url.token);
-                        editor.putString("username", Username);
-                        editor.putString("password", Password);
-                        editor.commit();
 
-                        Toast.makeText(LoginActivity.this, Url.token, Toast.LENGTH_SHORT).show();
+                        editor.commit();
+                        if (remember.isChecked()) {
+                            loginPrefsEditor.putBoolean("saveLogin", true);
+                            loginPrefsEditor.putString("username", Username);
+                            loginPrefsEditor.putString("password", Password);
+                            loginPrefsEditor.commit();
+                        } else {
+                            loginPrefsEditor.clear();
+                            loginPrefsEditor.commit();
+                        }
+
+                        Toast.makeText(LoginActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this  , DashboardActivity.class );
                         startActivity(intent);
                         finish();

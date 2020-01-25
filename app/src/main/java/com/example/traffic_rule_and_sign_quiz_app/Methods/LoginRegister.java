@@ -13,7 +13,7 @@ import retrofit2.Response;
 
 public class LoginRegister {
 
-    boolean isloggedIn,RegisterIn=false;
+    boolean isloggedIn,RegisterIn,Updatein=false;
     User user= Url.getInstance().create(User.class);
 
     public boolean userLogin(User_model user_model)
@@ -61,16 +61,15 @@ public class LoginRegister {
         }
         return user_model;
     }
-
-    public boolean registerUser(User_model register)
+    public boolean updateuser(String id,User_model userModel)
     {
 
-        Call<Void> userCall=user.registerUser(register);
+        Call<Void> userCall=user.Updateuser(id,userModel);
         Strick.StrictMode();
 
         try {
-            Response<Void>loginResponse=userCall.execute();
-            if (loginResponse.isSuccessful())
+            Response<Void>updateResponse=userCall.execute();
+            if (updateResponse.isSuccessful())
             {
                 RegisterIn=true;
 
@@ -83,4 +82,28 @@ public class LoginRegister {
         }
         return RegisterIn;
     }
+    public boolean registerUser(User_model register)
+    {
+
+        Call<Void> userCall=user.registerUser(register);
+        Strick.StrictMode();
+
+        try {
+            Response<Void>registerResponse=userCall.execute();
+            if (registerResponse.isSuccessful())
+            {
+                RegisterIn=true;
+
+                // Url.token +=loginResponse.body().getToken();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d("Myex:", e.getMessage());
+        }
+        return RegisterIn;
+    }
+
+
+
 }
