@@ -52,7 +52,7 @@ public class SignalFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
+                button.setVisibility(View.GONE);
                 relativeLayout.setVisibility(View.GONE);
                 setFragment(new AddSignalFragment());
             }

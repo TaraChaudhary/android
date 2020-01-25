@@ -17,7 +17,7 @@ import retrofit2.Response;
 public class LoginRegister {
 
     boolean isloggedIn,RegisterIn,Updatein,singnalin,getsignal=false;
-    User user= Url.getInstance().create(User.class);
+     User user= Url.getInstance().create(User.class);
     Sign sig= Url.getInstance().create(Sign.class);
     public boolean userLogin(User_model user_model)
     {
@@ -111,6 +111,27 @@ public class LoginRegister {
     {
 
         Call<Void> userCall=sig.addSignal(signal);
+        Strick.StrictMode();
+
+        try {
+            Response<Void>signalResponse=userCall.execute();
+            if (signalResponse.isSuccessful())
+            {
+                singnalin=true;
+
+                // Url.token +=loginResponse.body().getToken();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d("Myex:", e.getMessage());
+        }
+        return singnalin;
+    }
+    public  boolean logout(String token)
+    {
+
+        Call<Void> userCall=user.logout(token);
         Strick.StrictMode();
 
         try {

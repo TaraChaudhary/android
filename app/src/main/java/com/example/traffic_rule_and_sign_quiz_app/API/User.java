@@ -29,8 +29,10 @@ public interface User {
     @GET("single/{id}")
     Call<User_model> getUserDetails(@Header("Authorization")String token, @Path("id") String id );
 
-    @PUT("update/{id}")
+    @PUT("single/{id}")
     Call<Void> Updateuser(@Path("id") String id,@Body User_model userModel);
 
+    @POST("logout")
+    Call<Void> logout(@Header("Authorization")String token);
 
 }

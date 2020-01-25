@@ -14,6 +14,6 @@ public interface Sign {
     @POST("sign")
     Call<Void> addSignal(@Body Signal signal);
 
-    @GET("selectall")
+    @GET("sign")
     Call<List<Signal>> getSign();
 }

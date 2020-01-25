@@ -2,7 +2,9 @@
 
 <RelativeLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
 <include layout="@layout/layout_toolbar"/>
     <LinearLayout
         android:layout_below="@+id/toolbarhead"
@@ -31,9 +33,10 @@
         android:layout_below="@+id/lin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
         android:orientation="vertical"
-        android:layout_marginRight="10dp">
+        android:layout_marginRight="20dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,9 +52,9 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="#0000"
-            android:hint="All the information provided in the Driving test app is for the informatiom and practice purposes only and does not constitute any legal contract between developer and any person or entity unless otherwise specified.
-                              If you find an answer in the practice test of this app to be wrong and doesnot match with manual provided by your state. we advice you to go with the answers from your statw's manual.
-              "/>
+            android:hint="All the information provided in the Driving test app is for the informatiom and practice purposes only and does not constitute any legal contract between developer and any person or entity unless otherwise specified. If you find an answer in the practice test of this app to be wrong and doesnot match with manual provided by your state. we advice you to go with the answers from your statw's manual.
+              "
+            />
 
     </LinearLayout>
 

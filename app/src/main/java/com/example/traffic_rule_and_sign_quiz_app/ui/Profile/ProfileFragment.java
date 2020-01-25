@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.example.traffic_rule_and_sign_quiz_app.LoginActivity;
 import com.example.traffic_rule_and_sign_quiz_app.Methods.LoginRegister;
 import com.example.traffic_rule_and_sign_quiz_app.Methods.Strick;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
@@ -39,7 +41,7 @@ public class ProfileFragment extends Fragment {
     TextView firstname, lastname, dobtext, gendertext, emailtext, phonetext, username,fname;
    CircleImageView imageView;
    RelativeLayout relativeLayout;
-   Button back;
+   Button back,logout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ public class ProfileFragment extends Fragment {
         phonetext = root.findViewById(R.id.phone1);
         fname=root.findViewById(R.id.fname);
         edit=root.findViewById(R.id.edit);
+        logout=root.findViewById(R.id.logout);
         back=root.findViewById(R.id.back);
         imageView = root.findViewById(R.id.post_profileimg);
         relativeLayout=root.findViewById(R.id.layout1);
@@ -72,6 +75,25 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 relativeLayout.setVisibility(View.GONE);
                 setFragment(new ViewDashboardActivity());
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginRegister loginRegister=new LoginRegister();
+
+               if( loginRegister.logout(token))
+               {
+
+                   Toast.makeText(getContext(), "Logout success", Toast.LENGTH_SHORT).show();
+                   Intent intent=new Intent(getActivity(), LoginActivity.class);
+                   startActivity(intent);
+
+               }
+               else {
+                   Toast.makeText(getContext(), "Logout failed", Toast.LENGTH_SHORT).show();
+               }
             }
         });
 
