@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.traffic_rule_and_sign_quiz_app.Methods.LoginRegister;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
 import com.example.traffic_rule_and_sign_quiz_app.R;
+import com.example.traffic_rule_and_sign_quiz_app.Services.CreateChannel;
 import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
 
 public class LoginActivity extends AppCompatActivity {
@@ -57,16 +58,9 @@ public class LoginActivity extends AppCompatActivity {
             editPassword.setText(loginPreferences.getString("password", ""));
             remember.setChecked(true);
         }
-//
-//        showPassword.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//            }
-//
-//        });
+        notificationManagerCompat= NotificationManagerCompat.from(this);
+        CreateChannel channel=new CreateChannel(this);
+        channel.CreateChannel();
         Signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
