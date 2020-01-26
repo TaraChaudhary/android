@@ -1,6 +1,7 @@
 package com.example.traffic_rule_and_sign_quiz_app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences loginPreferences;
     private SharedPreferences.Editor loginPrefsEditor;
     private Boolean saveLogin;
+    private NotificationManagerCompat notificationManagerCompat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
