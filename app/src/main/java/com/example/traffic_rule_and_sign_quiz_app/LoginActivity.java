@@ -125,9 +125,9 @@ public class LoginActivity extends AppCompatActivity {
     public void DisplayNotification()
     {
         Notification notification=new NotificationCompat.Builder(this, CreateChannel.CHANNEL_1)
-                .setSmallIcon(R.drawable.ic_launcher_background)
-                .setContentTitle("First Notification")
-                .setContentText("This is first notification")
+                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                .setContentTitle("Notification")
+                .setContentText("Login successfully")
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE).build();
 
         notificationManagerCompat.notify(1,notification);
