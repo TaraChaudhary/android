@@ -1,6 +1,7 @@
 package com.example.traffic_rule_and_sign_quiz_app.Fragment;
 
 import android.Manifest;
+import android.app.Notification;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -10,6 +11,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.loader.content.CursorLoader;
@@ -29,6 +32,7 @@ import com.example.traffic_rule_and_sign_quiz_app.Methods.LoginRegister;
 import com.example.traffic_rule_and_sign_quiz_app.Methods.Strick;
 import com.example.traffic_rule_and_sign_quiz_app.Model.Signal;
 import com.example.traffic_rule_and_sign_quiz_app.R;
+import com.example.traffic_rule_and_sign_quiz_app.Services.CreateChannel;
 import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
 
 import java.io.File;
@@ -52,6 +56,7 @@ public class AddSignalFragment extends Fragment {
     LinearLayout linearLayout;
     private CircleImageView imgProfile;
     String name2 ;
+    private NotificationManagerCompat notificationManagerCompat;
 
     public AddSignalFragment() {
         // Required empty public constructor
@@ -68,6 +73,11 @@ public class AddSignalFragment extends Fragment {
         button=view.findViewById(R.id.imagebtn);
         imgProfile=view.findViewById(R.id.imgSignal);
         linearLayout=view.findViewById(R.id.linear);
+
+
+        notificationManagerCompat = NotificationManagerCompat.from(getActivity());
+        CreateChannel channel = new CreateChannel(getContext());
+        channel.CreateChannel();
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,15 +196,37 @@ public class AddSignalFragment extends Fragment {
 
         if (loginRegister.addSignal(signal))
         {
-            Toast.makeText(getContext(), "added", Toast.LENGTH_SHORT).show();
+            DisplayNotification();
 
         }
         else {
-            Toast.makeText(getContext(), "something wrong", Toast.LENGTH_SHORT).show();
+           DisplayNotification1();
 
         }
 
             }
+
+    public void DisplayNotification()
+    {
+        Notification notification=new NotificationCompat.Builder(getContext(), CreateChannel.CHANNEL_1)
+                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                .setContentTitle("Notification")
+                .setContentText("Sign add successfully")
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE).build();
+
+        notificationManagerCompat.notify(1,notification);
+    }
+
+    public void DisplayNotification1()
+    {
+        Notification notification=new NotificationCompat.Builder(getContext(), CreateChannel.CHANNEL_1)
+                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                .setContentTitle("Notification")
+                .setContentText("Something wrong")
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE).build();
+
+        notificationManagerCompat.notify(1,notification);
+    }
 
 
 }

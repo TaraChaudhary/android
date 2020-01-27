@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.loader.content.CursorLoader;
 
 import android.Manifest;
+import android.app.Notification;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -30,6 +33,7 @@ import com.example.traffic_rule_and_sign_quiz_app.Model.ImageResponse;
 import com.example.traffic_rule_and_sign_quiz_app.Methods.LoginRegister;
 import com.example.traffic_rule_and_sign_quiz_app.Methods.Strick;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
+import com.example.traffic_rule_and_sign_quiz_app.Services.CreateChannel;
 import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
 
 import java.io.File;
@@ -53,8 +57,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     RadioGroup gender;
     String imagePath;
     private String imageName = "";
-
-    String udob,ufname,ulname,ugender,uphone,uemail,upassword,uusername,image;
+    private NotificationManagerCompat notificationManagerCompat;
+    String udob,ufname,ulname,ugender,uphone,uemail,upassword,uusername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +103,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         gender.setOnCheckedChangeListener(this);
         btnSigup.setOnClickListener(this);
         btnimage.setOnClickListener(this);
+
+        notificationManagerCompat = NotificationManagerCompat.from(this);
+        CreateChannel channel = new CreateChannel(this);
+        channel.CreateChannel();
 
         dob = findViewById(R.id.datePicker);
         Calendar c = Calendar.getInstance();
@@ -238,7 +246,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         if (loginRegister.registerUser(user_model))
         {
-            //Toast.makeText(RegisterActivity.this, Url.token, Toast.LENGTH_SHORT).show();
+            DisplayNotification();
             Intent intent = new Intent(RegisterActivity.this  , LoginActivity.class );
             startActivity(intent);
             finish();
@@ -247,6 +255,16 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(RegisterActivity.this, "user id and password wrong", Toast.LENGTH_SHORT).show();
 
         }
+    }
+    public void DisplayNotification()
+    {
+        Notification notification=new NotificationCompat.Builder(this, CreateChannel.CHANNEL_1)
+                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                .setContentTitle("Notification")
+                .setContentText("Register successfully")
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE).build();
+
+        notificationManagerCompat.notify(1,notification);
     }
     private void BrowseImage() {
         Intent intent = new Intent(Intent.ACTION_PICK);
