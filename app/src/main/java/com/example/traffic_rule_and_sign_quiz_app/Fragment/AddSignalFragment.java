@@ -52,10 +52,10 @@ public class AddSignalFragment extends Fragment {
     Button button,back;
     String imagePath;
     private String imageName = "";
-    EditText name;
+    EditText name,desc;
     LinearLayout linearLayout;
     private CircleImageView imgProfile;
-    String name2 ;
+    String name2,desc1 ;
     private NotificationManagerCompat notificationManagerCompat;
 
     public AddSignalFragment() {
@@ -70,6 +70,7 @@ public class AddSignalFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add_signal, container, false);
         back=view.findViewById(R.id.back);
         name=view.findViewById(R.id.name);
+        desc=view.findViewById(R.id.description);
         button=view.findViewById(R.id.imagebtn);
         imgProfile=view.findViewById(R.id.imgSignal);
         linearLayout=view.findViewById(R.id.linear);
@@ -190,7 +191,8 @@ public class AddSignalFragment extends Fragment {
     public void save()
     {
         name2=name.getText().toString();
-        Signal signal = new Signal(name2,imageName);
+        desc1=desc.getText().toString();
+        Signal signal = new Signal(name2,desc1,imageName);
 
         LoginRegister loginRegister =new LoginRegister();
 

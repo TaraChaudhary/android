@@ -62,7 +62,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter. ContactsViewHolde
 
         }
         holder.Name.setText(signal.getName());
-
+        holder.description.setText(signal.getDescription());
 
 //        holder.delete.setOnClickListener(new View.OnClickListener() {
 //            @Override

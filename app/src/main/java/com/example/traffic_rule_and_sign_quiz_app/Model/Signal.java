@@ -5,13 +5,18 @@ import android.widget.EditText;
 public class Signal {
 
     String name;
+    String description;
     String image;
 
-    public Signal(String name, String image) {
+    public Signal(String name, String description, String image) {
         this.name = name;
+        this.description = description;
         this.image = image;
     }
 
+    public String getDescription() {
+        return description;
+    }
 
     public String getName() {
         return name;
