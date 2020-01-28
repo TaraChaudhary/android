@@ -116,6 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
+                    DisplayNotification1();
                     Toast.makeText(LoginActivity.this, "Username and password wrong", Toast.LENGTH_SHORT).show();
 
                 }
@@ -128,6 +129,17 @@ public class LoginActivity extends AppCompatActivity {
                 .setSmallIcon(R.drawable.ic_notifications_black_24dp)
                 .setContentTitle("Notification")
                 .setContentText("Login successfully")
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE).build();
+
+        notificationManagerCompat.notify(1,notification);
+    }
+
+    public void DisplayNotification1()
+    {
+        Notification notification=new NotificationCompat.Builder(this, CreateChannel.CHANNEL_1)
+                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                .setContentTitle("Notification")
+                .setContentText("Login Failed")
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE).build();
 
         notificationManagerCompat.notify(1,notification);

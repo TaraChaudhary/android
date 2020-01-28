@@ -252,7 +252,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             finish();
         }
         else {
-            Toast.makeText(RegisterActivity.this, "user id and password wrong", Toast.LENGTH_SHORT).show();
+            DisplayNotification1();
 
         }
     }
@@ -261,7 +261,18 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         Notification notification=new NotificationCompat.Builder(this, CreateChannel.CHANNEL_1)
                 .setSmallIcon(R.drawable.ic_notifications_black_24dp)
                 .setContentTitle("Notification")
-                .setContentText("Register successfully")
+                .setContentText("Register Failed")
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE).build();
+
+        notificationManagerCompat.notify(1,notification);
+    }
+
+    public void DisplayNotification1()
+    {
+        Notification notification=new NotificationCompat.Builder(this, CreateChannel.CHANNEL_1)
+                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                .setContentTitle("Notification")
+                .setContentText("Login Failed")
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE).build();
 
         notificationManagerCompat.notify(1,notification);
