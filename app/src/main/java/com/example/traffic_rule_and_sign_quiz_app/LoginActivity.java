@@ -5,8 +5,11 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import android.app.Notification;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
@@ -23,6 +26,7 @@ import android.widget.Toast;
 import com.example.traffic_rule_and_sign_quiz_app.Methods.LoginRegister;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
 import com.example.traffic_rule_and_sign_quiz_app.R;
+import com.example.traffic_rule_and_sign_quiz_app.Services.Broadcast;
 import com.example.traffic_rule_and_sign_quiz_app.Services.CreateChannel;
 import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
 
@@ -30,13 +34,18 @@ public class LoginActivity extends AppCompatActivity {
     EditText editUsername, editPassword;
     ImageButton btnLogin;
     Button Signup;
-    TextView showPassword;
+    
     String Username, Password;
     CheckBox remember;
+    Context context;
     private SharedPreferences loginPreferences;
     private SharedPreferences.Editor loginPrefsEditor;
     private Boolean saveLogin;
     private NotificationManagerCompat notificationManagerCompat;
+
+    Broadcast broadCast = new Broadcast(this);
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,38 +120,43 @@ public class LoginActivity extends AppCompatActivity {
                         loginPrefsEditor.commit();
                     }
 
-                    DisplayNotification();
+                    DisplayNotification("Login Successfully");
                     Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
-                    DisplayNotification1();
+                    DisplayNotification("Login Failed");
                     Toast.makeText(LoginActivity.this, "Username and password wrong", Toast.LENGTH_SHORT).show();
 
                 }
 
             }
 
-    public void DisplayNotification()
+    public void DisplayNotification(String message)
     {
         Notification notification=new NotificationCompat.Builder(this, CreateChannel.CHANNEL_1)
                 .setSmallIcon(R.drawable.ic_notifications_black_24dp)
                 .setContentTitle("Notification")
-                .setContentText("Login successfully")
+                .setContentText(message)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE).build();
 
         notificationManagerCompat.notify(1,notification);
     }
 
-    public void DisplayNotification1()
-    {
-        Notification notification=new NotificationCompat.Builder(this, CreateChannel.CHANNEL_1)
-                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
-                .setContentTitle("Notification")
-                .setContentText("Login Failed")
-                .setCategory(NotificationCompat.CATEGORY_MESSAGE).build();
 
-        notificationManagerCompat.notify(1,notification);
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter intentFilter=new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(broadCast,intentFilter);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(broadCast);
     }
 
 
