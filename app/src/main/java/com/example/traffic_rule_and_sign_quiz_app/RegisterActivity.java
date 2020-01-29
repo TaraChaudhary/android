@@ -224,7 +224,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 linearimage.setVisibility(View.GONE);
                 linearSignup.setVisibility(View.VISIBLE);
 
-                saveImageOnly();
+
                 break;
             case R.id.back:
                 intent = new Intent(this, LoginActivity.class);
@@ -324,7 +324,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         try {
             Response<ImageResponse> imageResponseResponse = responseBodyCall.execute();
             imageName = imageResponseResponse.body().getFilename();
-            Toast.makeText(this, "Image inserted" + imageName, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Image added sucess", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             Toast.makeText(this, "Error" + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             e.printStackTrace();
@@ -339,7 +339,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             .WRITE_EXTERNAL_STORAGE},
                     1);
         } else {
-          // saveImageOnly();
+           saveImageOnly();
         }
     }
 

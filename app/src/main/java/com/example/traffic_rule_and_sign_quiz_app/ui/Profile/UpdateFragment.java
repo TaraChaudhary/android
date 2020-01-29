@@ -1,6 +1,7 @@
 package com.example.traffic_rule_and_sign_quiz_app.ui.Profile;
 
 import android.Manifest;
+import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,6 +25,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -37,6 +40,7 @@ import com.example.traffic_rule_and_sign_quiz_app.Model.ImageResponse;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
 import com.example.traffic_rule_and_sign_quiz_app.R;
 import com.example.traffic_rule_and_sign_quiz_app.RegisterActivity;
+import com.example.traffic_rule_and_sign_quiz_app.Services.CreateChannel;
 import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
 
 import java.io.File;
@@ -66,6 +70,7 @@ public class UpdateFragment extends Fragment {
     String firstname,lastname,email,phone,user1;
     String imagePath;
     private String imageName = "";
+    private NotificationManagerCompat notificationManagerCompat;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -83,6 +88,10 @@ public class UpdateFragment extends Fragment {
         relativeLayout = root.findViewById(R.id.relative1);
         back=root.findViewById(R.id.back);
         update=root.findViewById(R.id.signup);
+
+        notificationManagerCompat = NotificationManagerCompat.from(getActivity());
+        CreateChannel channel = new CreateChannel(getContext());
+        channel.CreateChannel();
 
 
 
@@ -121,7 +130,7 @@ public class UpdateFragment extends Fragment {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveImageOnly();
+
                 Update();
             }
         });
@@ -158,12 +167,14 @@ public class UpdateFragment extends Fragment {
 
         if (loginRegister.updateuser(id,user_model))
         {
-            Toast.makeText(getActivity(), "User updated", Toast.LENGTH_SHORT).show();
+            DisplayNotification();
+           // Toast.makeText(getActivity(), "User updated", Toast.LENGTH_SHORT).show();
 
 
         }
         else {
-            Toast.makeText(getActivity(), "Some thing missing", Toast.LENGTH_SHORT).show();
+            DisplayNotification1();
+          //  Toast.makeText(getActivity(), "Some thing missing", Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -215,7 +226,7 @@ public class UpdateFragment extends Fragment {
         try {
             Response<ImageResponse> imageResponseResponse = responseBodyCall.execute();
             imageName = imageResponseResponse.body().getFilename();
-            Toast.makeText(getContext(), "Image inserted" + imageName, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Image upload", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             Toast.makeText(getContext(), "Error" + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             e.printStackTrace();
@@ -230,7 +241,7 @@ public class UpdateFragment extends Fragment {
                             .WRITE_EXTERNAL_STORAGE},
                     1);
         } else {
-            // saveImageOnly();
+             saveImageOnly();
         }
     }
 
@@ -245,6 +256,29 @@ public class UpdateFragment extends Fragment {
             }
         }
     }
+
+    public void DisplayNotification()
+    {
+        Notification notification=new NotificationCompat.Builder(getContext(), CreateChannel.CHANNEL_1)
+                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                .setContentTitle("Notification")
+                .setContentText("Update successfully")
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE).build();
+
+        notificationManagerCompat.notify(1,notification);
+    }
+
+    public void DisplayNotification1()
+    {
+        Notification notification=new NotificationCompat.Builder(getContext(), CreateChannel.CHANNEL_1)
+                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                .setContentTitle("Notification")
+                .setContentText("Update Failed")
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE).build();
+
+        notificationManagerCompat.notify(1,notification);
+    }
+
 }
 
 
