@@ -167,13 +167,13 @@ public class UpdateFragment extends Fragment {
 
         if (loginRegister.updateuser(id,user_model))
         {
-            DisplayNotification();
+            DisplayNotification("Update success");
            // Toast.makeText(getActivity(), "User updated", Toast.LENGTH_SHORT).show();
 
 
         }
         else {
-            DisplayNotification1();
+            DisplayNotification("Update failed");
           //  Toast.makeText(getActivity(), "Some thing missing", Toast.LENGTH_SHORT).show();
 
         }
@@ -257,27 +257,17 @@ public class UpdateFragment extends Fragment {
         }
     }
 
-    public void DisplayNotification()
+    public void DisplayNotification( String message)
     {
         Notification notification=new NotificationCompat.Builder(getContext(), CreateChannel.CHANNEL_1)
                 .setSmallIcon(R.drawable.ic_notifications_black_24dp)
                 .setContentTitle("Notification")
-                .setContentText("Update successfully")
+                .setContentText(message)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE).build();
 
         notificationManagerCompat.notify(1,notification);
     }
 
-    public void DisplayNotification1()
-    {
-        Notification notification=new NotificationCompat.Builder(getContext(), CreateChannel.CHANNEL_1)
-                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
-                .setContentTitle("Notification")
-                .setContentText("Update Failed")
-                .setCategory(NotificationCompat.CATEGORY_MESSAGE).build();
-
-        notificationManagerCompat.notify(1,notification);
-    }
 
 }
 

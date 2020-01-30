@@ -1,5 +1,6 @@
 package com.example.traffic_rule_and_sign_quiz_app.ui.Profile;
 
+import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +18,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.traffic_rule_and_sign_quiz_app.LoginActivity;
@@ -24,6 +27,7 @@ import com.example.traffic_rule_and_sign_quiz_app.Methods.LoginRegister;
 import com.example.traffic_rule_and_sign_quiz_app.Methods.Strick;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
 import com.example.traffic_rule_and_sign_quiz_app.R;
+import com.example.traffic_rule_and_sign_quiz_app.Services.CreateChannel;
 import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
 import com.example.traffic_rule_and_sign_quiz_app.ViewDashboardActivity;
 
@@ -42,6 +46,7 @@ public class ProfileFragment extends Fragment {
    CircleImageView imageView;
    RelativeLayout relativeLayout;
    Button back,logout;
+    private NotificationManagerCompat notificationManagerCompat;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -60,6 +65,10 @@ public class ProfileFragment extends Fragment {
         back=root.findViewById(R.id.back);
         imageView = root.findViewById(R.id.post_profileimg);
         relativeLayout=root.findViewById(R.id.layout1);
+
+        notificationManagerCompat = NotificationManagerCompat.from(getActivity());
+        CreateChannel channel = new CreateChannel(getContext());
+        channel.CreateChannel();
 
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,13 +95,13 @@ public class ProfileFragment extends Fragment {
                if( loginRegister.logout(token))
                {
 
-                   Toast.makeText(getContext(), "Logout success", Toast.LENGTH_SHORT).show();
+                   DisplayNotification("Logout Successfully");
                    Intent intent=new Intent(getActivity(), LoginActivity.class);
                    startActivity(intent);
 
                }
                else {
-                   Toast.makeText(getContext(), "Logout failed", Toast.LENGTH_SHORT).show();
+                   DisplayNotification("Logout Failed");
                }
             }
         });
@@ -131,7 +140,16 @@ public class ProfileFragment extends Fragment {
         }
         return false;
     }
+    public void DisplayNotification(String message)
+    {
+        Notification notification=new NotificationCompat.Builder(getContext(), CreateChannel.CHANNEL_1)
+                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                .setContentTitle("Notification")
+                .setContentText(message)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE).build();
 
+        notificationManagerCompat.notify(1,notification);
+    }
 
 
 }
