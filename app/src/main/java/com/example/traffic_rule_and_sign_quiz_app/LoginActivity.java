@@ -9,6 +9,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -31,13 +35,14 @@ import com.example.traffic_rule_and_sign_quiz_app.Services.CreateChannel;
 import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText editUsername, editPassword;
-    ImageButton btnLogin;
-    Button Signup;
-    
-    String Username, Password;
-    CheckBox remember;
-    Context context;
+    private EditText editUsername, editPassword;
+    private ImageButton btnLogin;
+    private Button Signup;
+    SensorManager sensorManager;
+    Sensor sensor;
+    SensorEventListener listener;
+    private String Username, Password;
+    private CheckBox remember;
     private SharedPreferences loginPreferences;
     private SharedPreferences.Editor loginPrefsEditor;
     private Boolean saveLogin;
@@ -57,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         editUsername = findViewById(R.id.username);
         editPassword = findViewById(R.id.password);
         btnLogin = findViewById(R.id.signin);
-        //   showPassword = findViewById(R.id.eye);
+
         Signup = findViewById(R.id.signup);
         remember = findViewById(R.id.checkbox);
         loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
@@ -69,9 +74,52 @@ public class LoginActivity extends AppCompatActivity {
             editPassword.setText(loginPreferences.getString("password", ""));
             remember.setChecked(true);
         }
+
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+        listener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+
+                if(event.values[0] <= 5){
+                    Username = editUsername.getText().toString();
+                    Password = editPassword.getText().toString();
+                    if (validate()) {
+
+                        Login();
+                    }
+
+                }
+                else {
+                    //any method
+
+                }
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+            }
+        };
+        if(sensor != null){
+            sensorManager
+                    .registerListener(listener,sensor,
+                            SensorManager.SENSOR_DELAY_NORMAL);
+        }
+        else {
+            Toast.makeText(this,
+                    "Requested sensor is not available",
+                    Toast.LENGTH_SHORT).show();
+        }
+
+
+
         notificationManagerCompat = NotificationManagerCompat.from(this);
         CreateChannel channel = new CreateChannel(this);
         channel.CreateChannel();
+
+
+
         Signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +128,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,8 +193,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -153,11 +200,16 @@ public class LoginActivity extends AppCompatActivity {
         registerReceiver(broadCast,intentFilter);
     }
 
+
+
     @Override
     protected void onStop() {
         super.onStop();
         unregisterReceiver(broadCast);
     }
+
+
+
 
 
             private boolean validate() {
@@ -174,6 +226,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 return true;
             }
+
 
 }
 

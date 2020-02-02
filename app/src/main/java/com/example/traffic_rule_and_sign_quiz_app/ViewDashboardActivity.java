@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.traffic_rule_and_sign_quiz_app.Fragment.ExampleFragment;
 import com.example.traffic_rule_and_sign_quiz_app.Fragment.RoadFragment;
@@ -81,7 +82,12 @@ Button button;
         }
 
 
-
+        help1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "This feature is not available!!!", Toast.LENGTH_SHORT).show();
+            }
+        });
         practice1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
