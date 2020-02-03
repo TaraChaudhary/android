@@ -21,6 +21,8 @@ import com.google.android.material.navigation.NavigationView;
 public class DashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
         BottomNavigationView home_navigation;
+
+
 @Override
 protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -13,7 +13,7 @@ import retrofit2.Response;
 
 public class LoginRegister {
 
-    boolean isloggedIn=false;
+    boolean isloggedIn,RegisterIn=false;
     User user= Url.getInstance().create(User.class);
 
     public boolean userLogin(User_model user_model)
@@ -48,7 +48,7 @@ public class LoginRegister {
             Response<Void>loginResponse=userCall.execute();
             if (loginResponse.isSuccessful())
             {
-                isloggedIn=true;
+                RegisterIn=true;
 
                 // Url.token +=loginResponse.body().getToken();
             }
@@ -57,6 +57,6 @@ public class LoginRegister {
             e.printStackTrace();
             Log.d("Myex:", e.getMessage());
         }
-        return isloggedIn;
+        return RegisterIn;
     }
 }
