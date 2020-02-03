@@ -240,7 +240,7 @@
                         android:layout_width="96dp"
                         android:layout_height="89dp"
                         android:background="@drawable/shape"
-                        android:src="@drawable/about"
+                        android:src="@drawable/steps"
                         android:padding="10dp"/>
                     <TextView
                         android:id="@+id/help1"
