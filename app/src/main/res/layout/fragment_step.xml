@@ -4,11 +4,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.StepFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.card.MaterialCardView
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:layout_gravity="center"
+        android:layout_width="160dp"
+        android:layout_height="150dp"
+        android:layout_margin="10dp">
+    <LinearLayout
+        android:id="@+id/help"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        android:gravity="center">
+    <TextView
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:id="@+id/helps"
+        android:layout_width="96dp"
+        android:layout_height="89dp"
+        android:background="@drawable/shape"
+        android:text="22"
+        android:padding="10dp"/>
+    <TextView
+        android:id="@+id/help1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+
+        android:text="Help"/>
+
+    </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </FrameLayout>
