@@ -11,6 +11,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public interface User {
     @POST("signup")
@@ -23,8 +24,8 @@ public interface User {
     @POST("upload/image")
     Call<ImageResponse> uploadImage(@Part MultipartBody.Part img);
 
-    @GET("users/me")
-    Call<User_model> getUserDetails(@Header("Authorization")String token);
+    @GET("single/{id}")
+    Call<User_model> getUserDetails(@Header("Authorization")String token, @Path("id") String id );
 
 
 }

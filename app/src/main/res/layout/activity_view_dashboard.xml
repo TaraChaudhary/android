@@ -253,6 +253,53 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:layout_width="160dp"
+                android:layout_height="150dp"
+                android:layout_margin="10dp">
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <ImageView
+                        android:id="@+id/map"
+                        android:layout_width="96dp"
+                        android:layout_height="89dp"
+                        android:background="@drawable/shape"
+                        android:src="@drawable/location"
+                        android:padding="10dp"/>
+                    <TextView
+                        android:id="@+id/map1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"
+
+                        android:text="Our location"/>
+
+
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+
         </LinearLayout>
 
     </LinearLayout>

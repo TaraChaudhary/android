@@ -28,7 +28,7 @@ public class LoginRegister {
             if (loginResponse.isSuccessful())
             {
                 isloggedIn=true;
-
+                Url.id = loginResponse.body().get_id();
                 Url.token +=loginResponse.body().getToken();
             }
         } catch (IOException e) {

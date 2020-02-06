@@ -97,6 +97,14 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (loginRegister.userLogin(user))
                     {
+                        SharedPreferences preferences = getSharedPreferences("session", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+
+                        editor.putString("id", Url.id);
+                        editor.putString("token", Url.token);
+
+                        editor.apply();
+
                         Toast.makeText(LoginActivity.this, Url.token, Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this  , DashboardActivity.class );
                         startActivity(intent);

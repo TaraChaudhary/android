@@ -39,26 +39,25 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
 
 
         @Override
-protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        protected void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+                setContentView(R.layout.activity_dashboard);
 
-        toolbarhead=findViewById(R.id.toolbarhead);
-        searchView=findViewById(R.id.btn_search);
-        home_navigation = findViewById(R.id.homeNavigation);
-        imageView = findViewById(R.id.post_profileimg);
+                toolbarhead = findViewById(R.id.toolbarhead);
+                searchView = findViewById(R.id.btn_search);
+                home_navigation = findViewById(R.id.homeNavigation);
+                imageView = findViewById(R.id.post_profileimg);
 
 
-        home_navigation.setOnNavigationItemSelectedListener(this);
+                home_navigation.setOnNavigationItemSelectedListener(this);
 
-        setFragment(new ViewDashboardActivity());
-        loadCurrentUser();
+                setFragment(new ViewDashboardActivity());
+
         }
 
-        public boolean setFragment(Fragment fragment){
-                if(fragment != null)
-                {
-                        getSupportFragmentManager().beginTransaction().replace(R.id.dasboard,fragment).commit();
+        public boolean setFragment(Fragment fragment) {
+                if (fragment != null) {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.dasboard, fragment).commit();
                         return true;
                 }
                 return false;
@@ -66,70 +65,32 @@ protected void onCreate(Bundle savedInstanceState) {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                Fragment selectedFragment=null;
+                Fragment selectedFragment = null;
 
 
-                switch (menuItem.getItemId())
-                {
+                switch (menuItem.getItemId()) {
                         case R.id.nav_home:
 
-                                selectedFragment=new ViewDashboardActivity();
+                                selectedFragment = new ViewDashboardActivity();
 
 
                                 break;
                         case R.id.nav_notification:
 
-                                selectedFragment=new AboutUsFragment();
+                                selectedFragment = new AboutUsFragment();
 
                                 break;
 
 
                         case R.id.nav_profile:
 
-                                selectedFragment=new ProfileFragment();
-
+                                selectedFragment = new ProfileFragment();
 
 
                                 break;
 
                 }
                 return setFragment(selectedFragment);
-        }
-
-        private void loadCurrentUser() {
-
-                User user = Url.getInstance().create(User.class);
-                Call<User_model> userCall = user.getUserDetails(Url.token);
-
-                userCall.enqueue(new Callback<User_model>() {
-                        @Override
-                        public void onResponse(Call<User_model> call, Response<User_model> response) {
-                                if (!response.isSuccessful()) {
-                                        Toast.makeText(DashboardActivity.this, "Code " + response.code(), Toast.LENGTH_SHORT).show();
-                                        return;
-                                }
-                                String imgPath = Url.imagePath +  response.body().getImage();
-
-                                Picasso.get().load(imgPath).into(imageView);
-
-
-//                StrictModeClass.StrictMode();
-//                try {
-//                    URL url = new URL(imgPath);
-//                    imgProgileImg.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-                        }
-
-                        @Override
-                        public void onFailure(Call<User_model> call, Throwable t) {
-                                Toast.makeText(DashboardActivity.this, "Error " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-
-                        }
-
-
-                });
         }
 }
 
