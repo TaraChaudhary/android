@@ -82,14 +82,14 @@
                 android:layout_height="150dp"
                 android:layout_margin="10dp">
                 <LinearLayout
-                    android:id="@+id/linear3"
+                    android:id="@+id/signal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center">
 
                     <ImageView
-                        android:id="@+id/signal"
+                        android:id="@+id/signal2"
                         android:layout_width="96dp"
                         android:layout_height="89dp"
                         android:background="@drawable/shape"
@@ -124,13 +124,13 @@
                 android:layout_height="150dp"
                 android:layout_margin="10dp">
                 <LinearLayout
-
+                    android:id="@+id/roadrule"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center">
                     <ImageView
-                        android:id="@+id/roadrule"
+                        android:id="@+id/roadrule2"
                         android:layout_width="96dp"
                         android:layout_height="89dp"
                         android:background="@drawable/shape"
@@ -227,13 +227,13 @@
                 android:layout_height="150dp"
                 android:layout_margin="10dp">
                 <LinearLayout
-
+                    android:id="@+id/help"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center">
                     <ImageView
-                        android:id="@+id/help"
+                        android:id="@+id/helps"
                         android:layout_width="96dp"
                         android:layout_height="89dp"
                         android:background="@drawable/shape"
@@ -258,7 +258,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linear1"
+
             android:clipToPadding="false"
             android:gravity="center"
             android:orientation="horizontal"
@@ -272,7 +272,7 @@
                 android:layout_height="150dp"
                 android:layout_margin="10dp">
                 <LinearLayout
-
+                    android:id="@+id/maps"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"

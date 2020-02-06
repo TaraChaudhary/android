@@ -19,7 +19,7 @@ import com.example.traffic_rule_and_sign_quiz_app.Practice.ResultActivity;
 
 public class ViewDashboardActivity extends Fragment {
     private RecyclerView view;
-    LinearLayout practice1,example1,score1, linearLayout;
+    LinearLayout practice1,example1,score1, linearLayout,map1,road,signal1,help1;
 
     TextView textView;
 
@@ -37,6 +37,12 @@ public class ViewDashboardActivity extends Fragment {
         practice1=root.findViewById(R.id.practice);
         example1=root.findViewById(R.id.example);
         score1=root.findViewById(R.id.score);
+        map1=root.findViewById(R.id.maps);
+        road=root.findViewById(R.id.roadrule);
+        signal1=root.findViewById(R.id.signal);
+        help1=root.findViewById(R.id.help);
+
+
 
         practice1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +71,14 @@ public class ViewDashboardActivity extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent1=new Intent(getActivity(), ResultActivity.class);
+                startActivity(intent1);
+            }
+        });
+
+        map1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1=new Intent(getActivity(), MapActivity.class);
                 startActivity(intent1);
             }
         });
