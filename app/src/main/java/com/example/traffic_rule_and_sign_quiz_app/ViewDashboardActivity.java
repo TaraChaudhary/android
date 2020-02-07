@@ -1,7 +1,6 @@
 package com.example.traffic_rule_and_sign_quiz_app;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -15,12 +14,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.traffic_rule_and_sign_quiz_app.Fragment.ExampleFragment;
 import com.example.traffic_rule_and_sign_quiz_app.Fragment.RoadFragment;
 import com.example.traffic_rule_and_sign_quiz_app.Fragment.SignalFragment;
-import com.example.traffic_rule_and_sign_quiz_app.Fragment.StepFragment;
+import com.example.traffic_rule_and_sign_quiz_app.Fragment.TempFragment;
 import com.example.traffic_rule_and_sign_quiz_app.Methods.LoginRegister;
 import com.example.traffic_rule_and_sign_quiz_app.Methods.Strick;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
@@ -90,7 +88,7 @@ Button button;
                 textView.setText("Example");
                 button.setVisibility(View.VISIBLE);
 
-                setFragment(new StepFragment());
+                setFragment(new TempFragment());
             }
         });
         practice1.setOnClickListener(new View.OnClickListener() {
