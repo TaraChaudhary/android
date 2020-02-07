@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.traffic_rule_and_sign_quiz_app.Fragment.ExampleFragment;
 import com.example.traffic_rule_and_sign_quiz_app.Fragment.RoadFragment;
 import com.example.traffic_rule_and_sign_quiz_app.Fragment.SignalFragment;
+import com.example.traffic_rule_and_sign_quiz_app.Fragment.StepFragment;
 import com.example.traffic_rule_and_sign_quiz_app.Methods.LoginRegister;
 import com.example.traffic_rule_and_sign_quiz_app.Methods.Strick;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
@@ -85,7 +86,11 @@ Button button;
         help1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "This feature is not available!!!", Toast.LENGTH_SHORT).show();
+                linearLayout.setVisibility(View.GONE);
+                textView.setText("Example");
+                button.setVisibility(View.VISIBLE);
+
+                setFragment(new StepFragment());
             }
         });
         practice1.setOnClickListener(new View.OnClickListener() {
