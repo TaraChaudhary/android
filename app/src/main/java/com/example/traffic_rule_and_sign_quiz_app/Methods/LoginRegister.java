@@ -23,7 +23,7 @@ public class LoginRegister {
     {
 
         Call<User_model> userCall=user.userLogin(user_model);
-        Strick.StrictMode();
+   //    Strick.StrictMode();
 
         try {
             Response<User_model>loginResponse=userCall.execute();
@@ -38,7 +38,7 @@ public class LoginRegister {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            Log.d("Myex:", e.getMessage());
+           // Log.d("Myex:", e.getMessage());
         }
         return isloggedIn;
     }

@@ -85,7 +85,7 @@ Button button;
             @Override
             public void onClick(View v) {
                 linearLayout.setVisibility(View.GONE);
-                textView.setText("Example");
+                textView.setText("Temp");
                 button.setVisibility(View.VISIBLE);
 
                 setFragment(new TempFragment());
@@ -107,7 +107,7 @@ Button button;
             public void onClick(View v) {
 
                    linearLayout.setVisibility(View.GONE);
-                   textView.setText("Temperature");
+                   textView.setText("Example");
                    button.setVisibility(View.VISIBLE);
 
                 setFragment(new ExampleFragment());
