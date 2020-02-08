@@ -107,7 +107,7 @@ Button button;
             public void onClick(View v) {
 
                    linearLayout.setVisibility(View.GONE);
-                   textView.setText("Example");
+                   textView.setText("Temperature");
                    button.setVisibility(View.VISIBLE);
 
                 setFragment(new ExampleFragment());
