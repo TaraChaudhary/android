@@ -34,7 +34,7 @@
         android:textStyle="bold"
         android:layout_marginTop="10dp"
 
-        android:text="Steps"/>
+        android:text="Temperature"/>
 
     </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
