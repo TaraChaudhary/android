@@ -2,20 +2,23 @@ package com.example.traffic_rule_and_sign_quiz_app.Methods;
 
 import android.util.Log;
 
+import com.example.traffic_rule_and_sign_quiz_app.API.Sign;
 import com.example.traffic_rule_and_sign_quiz_app.API.User;
+import com.example.traffic_rule_and_sign_quiz_app.Model.Signal;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
 import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
 
 import java.io.IOException;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
 
 public class LoginRegister {
 
-    boolean isloggedIn,RegisterIn,Updatein=false;
+    boolean isloggedIn,RegisterIn,Updatein,singnalin,getsignal=false;
     User user= Url.getInstance().create(User.class);
-
+    Sign sig= Url.getInstance().create(Sign.class);
     public boolean userLogin(User_model user_model)
     {
 
@@ -71,7 +74,7 @@ public class LoginRegister {
             Response<Void>updateResponse=userCall.execute();
             if (updateResponse.isSuccessful())
             {
-                RegisterIn=true;
+                Updatein=true;
 
                 // Url.token +=loginResponse.body().getToken();
             }
@@ -80,7 +83,7 @@ public class LoginRegister {
             e.printStackTrace();
             Log.d("Myex:", e.getMessage());
         }
-        return RegisterIn;
+        return Updatein;
     }
     public boolean registerUser(User_model register)
     {
@@ -104,6 +107,49 @@ public class LoginRegister {
         return RegisterIn;
     }
 
+    public boolean addSignal(Signal signal)
+    {
+
+        Call<Void> userCall=sig.addSignal(signal);
+        Strick.StrictMode();
+
+        try {
+            Response<Void>signalResponse=userCall.execute();
+            if (signalResponse.isSuccessful())
+            {
+                singnalin=true;
+
+                // Url.token +=loginResponse.body().getToken();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d("Myex:", e.getMessage());
+        }
+        return singnalin;
+    }
+    public List<Signal> Getsignal()
+    {
+        List<Signal> signalList=null;
+
+        Call<List<Signal>> userCall=sig.getSign();
+        Strick.StrictMode();
+
+        try {
+            Response<List<Signal>>getresponse=userCall.execute();
+            if (getresponse.isSuccessful())
+            {
+              signalList=getresponse.body();
+
+                // Url.token +=loginResponse.body().getToken();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d("Myex:", e.getMessage());
+        }
+        return signalList;
+    }
 
 
 }

@@ -44,7 +44,7 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
                 setContentView(R.layout.activity_dashboard);
 
                 toolbarhead = findViewById(R.id.toolbarhead);
-                searchView = findViewById(R.id.btn_search);
+
                 home_navigation = findViewById(R.id.homeNavigation);
                 imageView = findViewById(R.id.post_profileimg);
 

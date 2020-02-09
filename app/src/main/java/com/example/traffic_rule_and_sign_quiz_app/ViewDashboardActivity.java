@@ -22,7 +22,7 @@ import com.example.traffic_rule_and_sign_quiz_app.Fragment.SignalFragment;
 import com.example.traffic_rule_and_sign_quiz_app.Methods.LoginRegister;
 import com.example.traffic_rule_and_sign_quiz_app.Methods.Strick;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
-import com.example.traffic_rule_and_sign_quiz_app.Myadapter.MyAdapter;
+
 import com.example.traffic_rule_and_sign_quiz_app.Practice.QuestionActivity;
 import com.example.traffic_rule_and_sign_quiz_app.Practice.ResultActivity;
 import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
@@ -143,7 +143,7 @@ Button button;
             @Override
             public void onClick(View v) {
                 linearLayout.setVisibility(View.GONE);
-                textView.setText("Signal");
+                textView.setText("Sign");
                 button.setVisibility(View.VISIBLE);
 
                 setFragment(new SignalFragment());

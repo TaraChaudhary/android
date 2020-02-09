@@ -1,6 +1,6 @@
 package com.example.traffic_rule_and_sign_quiz_app.API;
 
-import com.example.traffic_rule_and_sign_quiz_app.Methods.ImageResponse;
+import com.example.traffic_rule_and_sign_quiz_app.Model.ImageResponse;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
 
 import okhttp3.MultipartBody;

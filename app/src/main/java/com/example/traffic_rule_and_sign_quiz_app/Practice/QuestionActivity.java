@@ -1,7 +1,10 @@
 package com.example.traffic_rule_and_sign_quiz_app.Practice;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,15 +17,30 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.traffic_rule_and_sign_quiz_app.DashboardActivity;
+import com.example.traffic_rule_and_sign_quiz_app.Methods.LoginRegister;
+import com.example.traffic_rule_and_sign_quiz_app.Methods.Strick;
+import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
 import com.example.traffic_rule_and_sign_quiz_app.Practice.ResultActivity;
 import com.example.traffic_rule_and_sign_quiz_app.R;
+import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
+
+import java.io.InputStream;
+import java.net.URL;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class QuestionActivity extends AppCompatActivity {
     TextView tv,text1;
     Button submitbutton, quitbutton,button;
     SearchView searchView;
     RadioGroup radio_g;
+    CircleImageView imageView;
     RadioButton rb1, rb2, rb3, rb4;
+
+    String id, token;
+    SharedPreferences prfs;
+    User_model model;
+    LoginRegister loginRegister = new LoginRegister();
 
     String questions[] = {
             "What is the eligible age of getting motorcycle driving licence?",
@@ -61,7 +79,7 @@ public class QuestionActivity extends AppCompatActivity {
         final TextView score = (TextView) findViewById(R.id.textView4);
         TextView textView = (TextView) findViewById(R.id.DispName);
         text1=findViewById(R.id.toolbarhead);
-        searchView=findViewById(R.id.btn_search);
+        imageView=findViewById(R.id.post_profileimg);
         button=findViewById(R.id.back);
 
 
@@ -78,6 +96,20 @@ public class QuestionActivity extends AppCompatActivity {
         rb2 = (RadioButton) findViewById(R.id.radioButton2);
         rb3 = (RadioButton) findViewById(R.id.radioButton3);
         rb4 = (RadioButton) findViewById(R.id.radioButton4);
+
+
+        prfs = getApplicationContext().getSharedPreferences("session", Context.MODE_PRIVATE);
+        id = prfs.getString("id", "");
+        token = prfs.getString("token", "");
+        model = loginRegister.userDetail(id, token);
+        Strick.StrictMode();
+
+        try {
+            URL url = new URL(Url.imagePath + model.getImage());
+            imageView.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         loadfirst();
         tv.setText(questions[flag]);

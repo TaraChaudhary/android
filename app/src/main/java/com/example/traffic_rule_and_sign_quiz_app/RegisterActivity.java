@@ -22,18 +22,15 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.traffic_rule_and_sign_quiz_app.API.User;
-import com.example.traffic_rule_and_sign_quiz_app.Methods.ImageResponse;
+import com.example.traffic_rule_and_sign_quiz_app.Model.ImageResponse;
 import com.example.traffic_rule_and_sign_quiz_app.Methods.LoginRegister;
 import com.example.traffic_rule_and_sign_quiz_app.Methods.Strick;
 import com.example.traffic_rule_and_sign_quiz_app.Model.User_model;
-import com.example.traffic_rule_and_sign_quiz_app.R;
 import com.example.traffic_rule_and_sign_quiz_app.Url.Url;
-import com.google.android.material.circularreveal.cardview.CircularRevealCardView;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,7 +42,6 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener,RadioGroup.OnCheckedChangeListener {
     private LinearLayout linearName, linearGender,linearDob,linearEmail,linearPassword,linearSignup,linearimage;
@@ -286,6 +282,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void saveImageOnly() {
+
         File file = new File(imagePath);
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("imageFile",

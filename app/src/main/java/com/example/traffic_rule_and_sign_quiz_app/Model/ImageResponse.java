@@ -1,4 +1,4 @@
-package com.example.traffic_rule_and_sign_quiz_app.Methods;
+package com.example.traffic_rule_and_sign_quiz_app.Model;
 
 public class ImageResponse {
 
