@@ -89,7 +89,7 @@ public class LoginRegister {
     {
 
         Call<Void> userCall=user.registerUser(register);
-        Strick.StrictMode();
+       // Strick.StrictMode();
 
         try {
             Response<Void>registerResponse=userCall.execute();
