@@ -23,7 +23,7 @@ public class LoginRegister {
     {
 
         Call<User_model> userCall=user.userLogin(user_model);
-   //    Strick.StrictMode();
+      Strick.StrictMode();
 
         try {
             Response<User_model>loginResponse=userCall.execute();
@@ -68,7 +68,7 @@ public class LoginRegister {
     {
 
         Call<Void> userCall=user.Updateuser(id,userModel);
-       // Strick.StrictMode();
+        Strick.StrictMode();
 
         try {
             Response<Void>updateResponse=userCall.execute();
@@ -89,7 +89,7 @@ public class LoginRegister {
     {
 
         Call<Void> userCall=user.registerUser(register);
-       // Strick.StrictMode();
+        Strick.StrictMode();
 
         try {
             Response<Void>registerResponse=userCall.execute();
@@ -111,7 +111,7 @@ public class LoginRegister {
     {
 
         Call<Void> userCall=sig.addSignal(signal);
-        //Strick.StrictMode();
+        Strick.StrictMode();
 
         try {
             Response<Void>signalResponse=userCall.execute();
