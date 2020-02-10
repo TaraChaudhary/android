@@ -23,7 +23,7 @@ public class LoginRegister {
     {
 
         Call<User_model> userCall=user.userLogin(user_model);
-      Strick.StrictMode();
+      //Strick.StrictMode();
 
         try {
             Response<User_model>loginResponse=userCall.execute();
@@ -42,6 +42,7 @@ public class LoginRegister {
         }
         return isloggedIn;
     }
+
 
     public User_model userDetail(String id,String Token)
     {
@@ -68,7 +69,7 @@ public class LoginRegister {
     {
 
         Call<Void> userCall=user.Updateuser(id,userModel);
-        Strick.StrictMode();
+      //  Strick.StrictMode();
 
         try {
             Response<Void>updateResponse=userCall.execute();
@@ -132,7 +133,7 @@ public class LoginRegister {
     {
 
         Call<Void> userCall=user.logout(token);
-        Strick.StrictMode();
+        //Strick.StrictMode();
 
         try {
             Response<Void>signalResponse=userCall.execute();
@@ -171,6 +172,8 @@ public class LoginRegister {
         }
         return signalList;
     }
+
+
 
 
 }

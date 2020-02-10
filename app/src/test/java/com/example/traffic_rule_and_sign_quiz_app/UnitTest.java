@@ -23,7 +23,7 @@ public class UnitTest {
     public void testlogin()
     {
 
-        User_model userModel=new User_model("tara","tara");
+        User_model userModel=new User_model("admin","tara");
         assertTrue(loginRegister.userLogin(userModel));
     }
 
@@ -40,7 +40,7 @@ public class UnitTest {
     public void testupdate()
     {
 
-        User_model userModel=new User_model("tara","chaudhary","9817509910","9817509910","admin","asd");
+        User_model userModel=new User_model("tara","chaudhary","9817509910","iamtaa","admin","asd");
         assertTrue(loginRegister.updateuser("5e41070b4d639d3188b38db0",userModel));
     }
 
@@ -49,6 +49,13 @@ public class UnitTest {
     {
         Signal signal=new Signal("turn right","turn right","as");
              assertTrue(loginRegister.addSignal(signal));
+    }
+
+    @Test
+    public void testlogout()
+    {
+
+        assertTrue(loginRegister.logout("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTQxMDcwYjRkNjM5ZDMxODhiMzhkYjAiLCJpYXQiOjE1ODEzNTU4Njh9.pY5ARP6cayXGrplEhXpLLt4V3M6oDQTf5wYvrSKuyIc"));
     }
 
     @After

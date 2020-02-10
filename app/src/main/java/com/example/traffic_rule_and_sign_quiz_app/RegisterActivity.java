@@ -246,37 +246,28 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         if (loginRegister.registerUser(user_model))
         {
-            DisplayNotification();
+            DisplayNotification("Register success");
             Intent intent = new Intent(RegisterActivity.this  , LoginActivity.class );
             startActivity(intent);
             finish();
         }
         else {
-            DisplayNotification1();
+            DisplayNotification("Registration failed");
 
         }
     }
-    public void DisplayNotification()
+    public void DisplayNotification(String message)
     {
         Notification notification=new NotificationCompat.Builder(this, CreateChannel.CHANNEL_1)
                 .setSmallIcon(R.drawable.ic_notifications_black_24dp)
                 .setContentTitle("Notification")
-                .setContentText("Register Failed")
+                .setContentText(message)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE).build();
 
         notificationManagerCompat.notify(1,notification);
     }
 
-    public void DisplayNotification1()
-    {
-        Notification notification=new NotificationCompat.Builder(this, CreateChannel.CHANNEL_1)
-                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
-                .setContentTitle("Notification")
-                .setContentText("Login Failed")
-                .setCategory(NotificationCompat.CATEGORY_MESSAGE).build();
 
-        notificationManagerCompat.notify(1,notification);
-    }
     private void BrowseImage() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
