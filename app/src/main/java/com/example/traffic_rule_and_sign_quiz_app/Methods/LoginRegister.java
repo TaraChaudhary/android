@@ -111,7 +111,7 @@ public class LoginRegister {
     {
 
         Call<Void> userCall=sig.addSignal(signal);
-        Strick.StrictMode();
+        //Strick.StrictMode();
 
         try {
             Response<Void>signalResponse=userCall.execute();
