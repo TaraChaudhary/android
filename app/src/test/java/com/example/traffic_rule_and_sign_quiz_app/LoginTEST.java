@@ -34,6 +34,14 @@ public class LoginTEST {
         assertTrue(loginRegister.registerUser(userModel));
     }
 
+    @Test
+    public void testupdate()
+    {
+
+        User_model userModel=new User_model("tara","chaudhary","9817509910","9817509910","admin","asd");
+        assertTrue(loginRegister.updateuser("5e41070b4d639d3188b38db0",userModel));
+    }
+
     @After
     public void wrap_up(){
         loginRegister = null;

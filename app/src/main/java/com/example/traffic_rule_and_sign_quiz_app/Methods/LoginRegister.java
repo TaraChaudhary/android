@@ -68,7 +68,7 @@ public class LoginRegister {
     {
 
         Call<Void> userCall=user.Updateuser(id,userModel);
-        Strick.StrictMode();
+       // Strick.StrictMode();
 
         try {
             Response<Void>updateResponse=userCall.execute();
