@@ -68,12 +68,12 @@ public class LoginActivity extends AppCompatActivity {
         loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         loginPrefsEditor = loginPreferences.edit();
 
-//        saveLogin = loginPreferences.getBoolean("saveLogin", false);
-//        if (saveLogin == true) {
-//            editUsername.setText(loginPreferences.getString("username", ""));
-//            editPassword.setText(loginPreferences.getString("password", ""));
-//            remember.setChecked(true);
-//        }
+        saveLogin = loginPreferences.getBoolean("saveLogin", false);
+        if (saveLogin == true) {
+            editUsername.setText(loginPreferences.getString("username", ""));
+            editPassword.setText(loginPreferences.getString("password", ""));
+            remember.setChecked(true);
+        }
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
