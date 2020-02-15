@@ -91,6 +91,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/layout_background"
                 android:gravity="center"
+
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -271,7 +272,7 @@
                 <LinearLayout
                     android:id="@+id/linear4"
                     android:layout_width="match_parent"
-                    android:layout_height="345dp"
+                    android:layout_height="282dp"
                     android:orientation="vertical"
                     android:visibility="gone"
 
@@ -339,7 +340,7 @@
                 <LinearLayout
                     android:id="@+id/linear5"
                     android:layout_width="match_parent"
-                    android:layout_height="345dp"
+                    android:layout_height="282dp"
                     android:orientation="vertical"
                     android:visibility="gone">
 
@@ -403,7 +404,7 @@
                 <LinearLayout
                     android:id="@+id/lsignup"
                     android:layout_width="match_parent"
-                    android:layout_height="345dp"
+                    android:layout_height="282dp"
                     android:orientation="vertical"
                     android:visibility="gone">
 
@@ -431,7 +432,7 @@
                         android:layout_width="150dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:layout_marginTop="50dp"
+                        android:layout_marginTop="30dp"
 
 
                         android:background="@drawable/button_background"

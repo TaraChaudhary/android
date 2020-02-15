@@ -64,13 +64,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter. ContactsViewHolde
         holder.Name.setText(signal.getName());
         holder.description.setText(signal.getDescription());
 
-//        holder.delete.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                studentList.remove(position);
-//                notifyItemRemoved(position);
-//            }
-//        });
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signalList.remove(position);
+                notifyItemRemoved(position);
+            }
+        });
 
     }
     @Override
@@ -88,7 +88,7 @@ public class ContactsViewHolder extends RecyclerView.ViewHolder{
             Name = itemView.findViewById(R.id.namesignal);
             description = itemView.findViewById(R.id.signdescription);
 
-
+            delete = itemView.findViewById(R.id.imagedelete);
 
         }
     }

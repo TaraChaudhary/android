@@ -23,8 +23,8 @@ public class LoginTest {
     @Rule
     public ActivityTestRule<LoginActivity> rule =
             new ActivityTestRule<>(LoginActivity.class);
-    String username = "admin";
-    String password = "tara";
+    String username = "tara";
+    String password = "admin";
 
 
     @Test

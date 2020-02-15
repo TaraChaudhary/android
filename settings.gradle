@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':watch'
 rootProject.name='Traffic-Rule-and-sign-quiz-app'

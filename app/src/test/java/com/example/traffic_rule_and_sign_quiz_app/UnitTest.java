@@ -23,7 +23,7 @@ public class UnitTest {
     public void testlogin()
     {
 
-        User_model userModel=new User_model("admin","tara");
+        User_model userModel=new User_model("tara","admin");
         assertTrue(loginRegister.userLogin(userModel));
     }
 
